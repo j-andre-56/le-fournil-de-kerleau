@@ -35,19 +35,19 @@
   .horaire { display: flex; justify-content: space-between; max-width: 400px; border-bottom: 1px dashed #a89a7a; padding: 8px 0; font-size: 14px; }
   .btn { display: inline-block; margin-top: 50px; padding: 12px 25px; background: #1a1a1a; color: #F2E8CF; text-decoration: none; font-size: 14px; }
 
-  /* OBJET FLOTTANT BAS DROITE */
+  /* OBJET FLOTTANT - SANS FOND SANS CONTOUR */
   .floating-data {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: #fff;
-    border: 1px solid #000;
-    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    padding: 0;
     font-size: 11px;
     line-height: 1.6;
     width: 200px;
     z-index: 999;
-    box-shadow: 4px 4px 0px #000;
+    text-align: right;
   }
   .floating-data .title {
     text-transform: uppercase;
@@ -57,7 +57,6 @@
     font-size: 11px;
   }
   .fd-line { display: flex; justify-content: space-between; }
-  .fd-line span:last-child { text-align: right; }
 </style>
 </head>
 <body>
@@ -75,7 +74,7 @@
   <a class="btn" href="tel:+33297000000">02 97 00 00 00 — APPELER</a>
 </div>
 
-<div class="floating-data" id="floating">
+<div class="floating-data">
   <div class="title">KERLEAU — LIVE DATA</div>
   <div class="fd-line"><span>DATE</span><span id="f-date">--/--/--</span></div>
   <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
