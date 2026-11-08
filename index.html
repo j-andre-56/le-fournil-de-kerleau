@@ -18,26 +18,12 @@
     max-width: 700px;
     margin: 0;
     padding: 60px 40px;
+    padding-bottom: 150px;
   }
-  h1 {
-    font-weight: 400;
-    letter-spacing: 0;
-    font-size: 14px;
-    line-height: 1;
-    margin: 0 0 15px 0;
-    text-transform: uppercase;
-  }
-  .sub {
-    font-weight: 400;
-    letter-spacing: 0;
-    font-size: 14px;
-    text-transform: uppercase;
-    opacity: 0.7;
-    margin-bottom: 60px;
-  }
+  h1 { font-weight: 400; font-size: 14px; line-height: 1; margin: 0 0 15px 0; text-transform: uppercase; }
+  .sub { font-size: 14px; text-transform: uppercase; opacity: 0.7; margin-bottom: 60px; }
   h2 {
     font-weight: 400;
-    letter-spacing: 0;
     font-size: 14px;
     text-transform: uppercase;
     border-top: 1px solid #1a1a1a;
@@ -45,46 +31,68 @@
     margin-top: 50px;
     width: 200px;
   }
-  p { font-size: 15px; max-width: 400px; letter-spacing: 0; }
-  .horaire {
-    display: flex;
-    justify-content: space-between;
-    max-width: 400px;
-    border-bottom: 1px dashed #a89a7a;
-    padding: 8px 0;
-    font-size: 14px;
-    letter-spacing: 0;
+  p { font-size: 15px; max-width: 400px; }
+  .horaire { display: flex; justify-content: space-between; max-width: 400px; border-bottom: 1px dashed #a89a7a; padding: 8px 0; font-size: 14px; }
+  .btn { display: inline-block; margin-top: 50px; padding: 12px 25px; background: #1a1a1a; color: #F2E8CF; text-decoration: none; font-size: 14px; }
+
+  /* OBJET FLOTTANT BAS DROITE */
+  .floating-data {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #000;
+    padding: 12px 16px;
+    font-size: 11px;
+    line-height: 1.6;
+    width: 200px;
+    z-index: 999;
+    box-shadow: 4px 4px 0px #000;
   }
-  .btn {
-    display: inline-block;
-    margin-top: 50px;
-    padding: 12px 25px;
-    background: #1a1a1a;
-    color: #F2E8CF;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0;
+  .floating-data .title {
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+    font-size: 11px;
   }
+  .fd-line { display: flex; justify-content: space-between; }
+  .fd-line span:last-child { text-align: right; }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>LE FOURNIL DE KERLEAU</h1>
   <div class="sub">Production Boulangère</div>
-
   <h2>Pain du jour</h2>
   <p>Pain au levain, baguette tradition, complet et seigle. Farine locale, fermentation lente et au levain.</p>
-
   <h2>Horaires</h2>
   <div class="horaire"><span>Mar - Sam</span><span>6h30 - 19h30</span></div>
   <div class="horaire"><span>Dimanche</span><span>7h - 13h</span></div>
   <div class="horaire"><span>Lundi</span><span>Fermé</span></div>
-
   <h2>Adresse</h2>
   <p>2, Kerleau<br>56950 Crac'h</p>
-
   <a class="btn" href="tel:+33297000000">02 97 00 00 00 — APPELER</a>
 </div>
+
+<div class="floating-data" id="floating">
+  <div class="title">KERLEAU — LIVE DATA</div>
+  <div class="fd-line"><span>DATE</span><span id="f-date">--/--/--</span></div>
+  <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
+  <div class="fd-line"><span>MÉTÉO</span><span>14°C NUAGEUX</span></div>
+  <div class="fd-line"><span>VENT</span><span>12 KM/H NW</span></div>
+  <div class="fd-line"><span>HUMIDITÉ</span><span>78%</span></div>
+  <div class="fd-line"><span>COORD</span><span>47.6N 3.0W</span></div>
+</div>
+
+<script>
+  function updateTime(){
+    const now = new Date();
+    document.getElementById('f-date').textContent = now.toLocaleDateString('fr-FR');
+    document.getElementById('f-time').textContent = now.toLocaleTimeString('fr-FR');
+  }
+  setInterval(updateTime, 1000);
+  updateTime();
+</script>
 </body>
 </html>
