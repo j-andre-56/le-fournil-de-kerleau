@@ -1,15 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Boulangerie de Ploemel</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; padding: 50px; }
-    h1 { color: #8B4513; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Fournil de Kerleau - Ploemel</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Source Code Pro', monospace;
+    margin: 0;
+    background: #FFFCF5;
+    color: #2B2B2B;
+    line-height: 1.6;
+  }
+  header {
+    text-align: center;
+    padding: 80px 20px;
+    border-bottom: 1px solid #2B2B2B;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: -1px;
+    margin: 0;
+  }
+  .sub {
+    font-weight: 300;
+    margin-top: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  main {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+  h2 { font-size: 16px; text-transform: uppercase; letter-spacing: 2px; margin-top: 50px; }
+  .horaire { display: flex; justify-content: space-between; border-bottom: 1px dashed #CCC; padding: 8px 0; font-size: 15px; }
+  .btn {
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+    padding: 15px;
+    background: #2B2B2B;
+    color: #FFFCF5;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  footer { text-align: center; padding: 60px; font-size: 12px; opacity: 0.5; }
+</style>
 </head>
 <body>
-  <h1>Boulangerie de Ploemel</h1>
-  <p>Pain frais tous les matins à partir de 6h.</p>
-  <p>02 XX XX XX XX</p>
+
+<header>
+  <h1>LE FOURNIL DE KERLEAU</h1>
+  <div class="sub">Ploemel — Boulangerie artisanale</div>
+</header>
+
+<main>
+  <h2>Pain du jour</h2>
+  <p>Pain au levain, baguette tradition, complet et seigle. Farine locale, fermentation longue.</p>
+
+  <h2>Horaires</h2>
+  <div class="horaire"><span>Mardi - Samedi</span><span>6h30 - 13h30 / 16h - 19h30</span></div>
+  <div class="horaire"><span>Dimanche</span><span>7h - 13h</span></div>
+  <div class="horaire"><span>Lundi</span><span>Fermé</span></div>
+
+  <h2>Nous trouver</h2>
+  <p>12 rue de Kerleau, 56400 Ploemel</p>
+
+  <a class="btn" href="tel:+33297000000">APPELER : 02 97 00 00 00</a>
+</main>
+
+<footer>© 2026 Le Fournil de Kerleau</footer>
+
 </body>
 </html>
