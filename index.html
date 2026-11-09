@@ -13,26 +13,15 @@
   .sub{margin-bottom:60px;font-size:14px;text-transform:uppercase}
   h2{width:200px;margin:50px 0 12px;padding-top:12px;border-top:1px solid #000;font-size:14px;font-weight:600;text-transform:uppercase}
   p{max-width:400px;margin:0;font-size:14px;line-height:1.6}
-  
   .horaire{display:flex;justify-content:space-between;gap:20px;max-width:400px;padding:8px 0;border-bottom:1px dashed #a89a7a;font-size:14px}
   .btn{display:inline-block;margin-top:50px;padding:12px 24px;background:#1a1a1a;color:#F2E8CF;text-decoration:none;font-size:14px}
-
-  /* Production */
   .pains{display:grid;grid-template-columns:1fr 1fr;gap:40px 20px;max-width:400px}
   .pain-title{font-size:14px;font-weight:600;text-transform:uppercase}
   .pain-desc{margin-top:8px;font-size:13px;line-height:1.5}
-
-  /* Objet flottant */
-  .floating-data{position:fixed;bottom:20px;right:20px;width:200px;font-size:11px;line-height:1.6;text-align:right;z-index:10}
-  .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #000;text-transform:uppercase}
+  .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right;z-index:10}
+  .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF;text-transform:uppercase}
   .fd-line{display:flex;justify-content:space-between}
-
-  @media(max-width:600px){
-    .container{padding:32px 20px 220px}
-    h2{width:100%}
-    .horaire,p{max-width:100%}
-    .horaire{flex-wrap:wrap}
-  }
+  @media(max-width:600px){.container{padding:32px 20px 220px}h2{width:100%}.horaire,p{max-width:100%}.horaire{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -43,22 +32,10 @@
 
   <h2>Production Boulangère</h2>
   <div class="pains">
-    <div>
-      <div class="pain-title">01 / Quotidien</div>
-      <div class="pain-desc">T80<br>Levain<br>Sel de Guérande<br>75% hydra<br>Cuisson bois<br>2,50€>Kg</div>
-    </div>
-    <div>
-      <div class="pain-title">02 / Solaire</div>
-      <div class="pain-desc">T150 Complète<br>Four solaire<br>Selon soleil<br>3,20€</div>
-    </div>
-    <div>
-      <div class="pain-title">03 / Week-end</div>
-      <div class="pain-desc">T80 + Graines<br>Longue ferm.<br>Vendredi only<br>4,00€</div>
-    </div>
-    <div>
-      <div class="pain-title">04 / Sportif</div>
-      <div class="pain-desc">Sarrasin + Noix<br>Protéines<br>Petite série<br>4,50€</div>
-    </div>
+    <div><div class="pain-title">01 / Quotidien</div><div class="pain-desc">T80<br>Levain<br>Sel de Guérande<br>75% hydra<br>Cuisson bois<br>2,50€>Kg</div></div>
+    <div><div class="pain-title">02 / Solaire</div><div class="pain-desc">T150 Complète<br>Four solaire<br>Selon soleil<br>3,20€</div></div>
+    <div><div class="pain-title">03 / Week-end</div><div class="pain-desc">T80 + Graines<br>Longue ferm.<br>Vendredi only<br>4,00€</div></div>
+    <div><div class="pain-title">04 / Sportif</div><div class="pain-desc">Sarrasin + Noix<br>Protéines<br>Petite série<br>4,50€</div></div>
   </div>
 
   <h2>Horaires et Point de retrait</h2>
