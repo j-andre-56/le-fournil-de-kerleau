@@ -8,26 +8,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
- .logo-float{
-  position:fixed;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:340px;height:auto;
-  opacity:0.04;pointer-events:none;z-index:1;
-  animation:sunVibe 5s ease-in-out infinite;
-}
-@keyframes sunVibe{
-  0%{transform:translate(-50%,-50%) scale(1);opacity:0.03}
-  50%{transform:translate(-50%,-50%) scale(1.02);opacity:0.06}
-  100%{transform:translate(-50%,-50%) scale(1);opacity:0.03}
-}
   *{box-sizing:border-box}
   body{margin:0;background:#F2E8CF;color:#000;font-family:'Source Code Pro',monospace;padding-top:27px}
   .marquee{position:fixed;top:0;left:0;width:100%;background:#000;color:#F2E8CF;font-size:11px;line-height:1;text-transform:uppercase;white-space:nowrap;overflow:hidden;z-index:20;padding:8px 0}
   .marquee-track{display:flex;width:max-content;animation:scroll 25s linear infinite}
   .marquee-track span{padding-right:0}
   @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-  .logo-float{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:auto;opacity:0.08;pointer-events:none;z-index:1}
   .container{max-width:600px;padding:60px 40px 180px;position:relative;z-index:2}
+  .logo-top{display:block;width:120px;height:auto;margin-bottom:30px;animation:sunVibe 5s ease-in-out infinite}
+  @keyframes sunVibe{
+    0%{transform:scale(1);opacity:0.9}
+    50%{transform:scale(1.03);opacity:1}
+    100%{transform:scale(1);opacity:0.9}
+  }
   h1{margin:0 0 12px;font-size:14px;font-weight:600;line-height:1.2;text-transform:uppercase}
   .sub{margin-bottom:60px;font-size:14px;text-transform:uppercase}
   h2{width:250px;margin:50px 0 12px;padding-top:12px;border-top:1px solid #000;font-size:14px;font-weight:600;text-transform:uppercase}
@@ -41,7 +34,7 @@
   .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right;z-index:3}
   .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF;text-transform:uppercase}
   .fd-line{display:flex;justify-content:space-between}
-  @media(max-width:600px){.container{padding:32px 20px 220px}.logo-float{width:260px}.horaire,p{max-width:100%}}
+  @media(max-width:600px){.container{padding:32px 20px 220px}.horaire,p{max-width:100%}}
 </style>
 </head>
 <body>
@@ -51,8 +44,8 @@
     <span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span>
   </div>
 </div>
-<img class="logo-float" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau">
 <div class="container">
+  <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau">
   <h1>LE FOURNIL DE KERLEAU >>> SITE EN CONSTRUCTION</h1>
   <div class="sub">Cuisson Bois / Soleil</div>
   <h2>Production Boulangère</h2>
@@ -73,7 +66,7 @@
   <div class="title">LIVE DATA</div>
   <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
   <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
-  <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
+  <div class="fd-line"><span>COORD</span><span>47.6N 3.0W</span></div>
 </div>
 <script>
   const fTime=document.getElementById('f-time');
