@@ -4,12 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Le Fournil de Kerleau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box}
   body{margin:0;background:#F2E8CF;color:#000;font-family:'Source Code Pro',monospace;padding-top:27px}
   .marquee{position:fixed;top:0;left:0;width:100%;background:#000;color:#F2E8CF;font-size:11px;line-height:1;text-transform:uppercase;white-space:nowrap;overflow:hidden;z-index:20;padding:8px 0}
-  .marquee-track{display:inline-block;animation:scroll 30s linear infinite}
+  .marquee-track{display:flex;width:max-content;animation:scroll 25s linear infinite}
+  .marquee-track span{padding-right:40px}
   @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
   .logo-float{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:auto;opacity:0.08;pointer-events:none;z-index:1}
   .container{max-width:600px;padding:60px 40px 180px;position:relative;z-index:2}
@@ -32,7 +35,8 @@
 <body>
 <div class="marquee">
   <div class="marquee-track">
-    FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H &nbsp;
+    <span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> </span>
+    <span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> </span>
   </div>
 </div>
 <img class="logo-float" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau">
