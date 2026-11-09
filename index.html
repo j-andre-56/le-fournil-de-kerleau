@@ -55,17 +55,24 @@
 </div>
 <div class="floating-data">
   <div class="title">LIVE DATA</div>
-  <div class="fd-line"><span>DATE</span><span id="f-date">--/--/--</span></div>
   <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
-  <div class="fd-line"><span>MÉTÉO</span><span>14°C NUAGEUX</span></div>
-  <div class="fd-line"><span>VENT</span><span>12 KM/H NW</span></div>
-  <div class="fd-line"><span>HUMIDITÉ</span><span>78%</span></div>
+  <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
   <div class="fd-line"><span>COORD</span><span>47.6N 3.0W</span></div>
 </div>
 <script>
   const fDate=document.getElementById('f-date'),fTime=document.getElementById('f-time');
   function updateTime(){const d=new Date();fDate.textContent=d.toLocaleDateString('fr-FR');fTime.textContent=d.toLocaleTimeString('fr-FR')}
   setInterval(updateTime,1000);updateTime();
+  async function updateCloud(){
+  try{
+    const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=47.62&longitude=-2.99&current=cloud_cover&timezone=auto');
+    const d = await r.json();
+    document.getElementById('f-cloud').textContent = d.current.cloud_cover + '%';
+  }catch(e){}
+}
+updateCloud();
+setInterval(updateCloud, 600000);
 </script>
+ 
 </body>
 </html>
