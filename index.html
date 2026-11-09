@@ -8,6 +8,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
+ .logo-float{
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:340px;height:auto;
+  opacity:0.08;pointer-events:none;z-index:1;
+  animation:sunVibe 4s ease-in-out infinite;
+}
+@keyframes sunVibe{
+  0%{transform:translate(-50%,-50%) scale(1);opacity:0.06}
+  50%{transform:translate(-50%,-50%) scale(1.04);opacity:0.12}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:0.06}
+}
   *{box-sizing:border-box}
   body{margin:0;background:#F2E8CF;color:#000;font-family:'Source Code Pro',monospace;padding-top:27px}
   .marquee{position:fixed;top:0;left:0;width:100%;background:#000;color:#F2E8CF;font-size:11px;line-height:1;text-transform:uppercase;white-space:nowrap;overflow:hidden;z-index:20;padding:8px 0}
