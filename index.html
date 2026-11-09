@@ -4,72 +4,95 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Le Fournil de Kerleau</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
+    * { box-sizing: border-box; }
   body {
     font-family: 'Source Code Pro', monospace;
-    font-weight: 400;
-    letter-spacing: 0;
     margin: 0;
-    background-color: #F2E8CF;
+    background: #F2E8CF;
     color: #000;
+    -webkit-font-smoothing: antialiased;
   }
   .container {
-    max-width: 700px;
-    margin: 0;
-    padding: 60px 40px;
-    padding-bottom: 150px;
+    max-width: 600px;
+    padding: 60px 40px 180px 40px;
   }
-  h1 { font-weight: 600; font-size: 14px; line-height: 1; margin: 0 0 15px 0; text-transform: uppercase; }
+  h1 { font-weight: 600; font-size: 14px; line-height: 1.2; margin: 0 0 12px 0; text-transform: uppercase; }
   .sub { font-size: 14px; text-transform: uppercase; margin-bottom: 60px; }
   h2 {
     font-weight: 400;
     font-size: 14px;
     text-transform: uppercase;
     border-top: 1px solid #000;
-    padding-top: 15px;
-    margin-top: 50px;
+    padding-top: 12px;
+    margin: 50px 0 12px 0;
     width: 200px;
   }
-  p { font-size: 15px; max-width: 400px; }
-  .horaire { display: flex; justify-content: space-between; max-width: 400px; border-bottom: 1px dashed #a89a7a; padding: 8px 0; font-size: 14px; }
-  .btn { display: inline-block; margin-top: 50px; padding: 12px 25px; background: #1a1a1a; color: #F2E8CF; text-decoration: none; font-size: 14px; }
+  p { font-size: 14px; line-height: 1.6; max-width: 400px; margin: 0; }
+  .horaire {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 400px;
+    border-bottom: 1px dashed #a89a7a;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+  .btn {
+    display: inline-block;
+    margin-top: 50px;
+    padding: 12px 24px;
+    background: #1a1a1a;
+    color: #F2E8CF;
+    text-decoration: none;
+    font-size: 14px;
+  }
 
-  /* OBJET FLOTTANT - SANS FOND SANS CONTOUR */
+  /* OBJET FLOTTANT */
   .floating-data {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: transparent;
-    border: none;
-    padding: 0;
+    width: 200px;
     font-size: 11px;
     line-height: 1.6;
-    width: 200px;
-    z-index: 999;
     text-align: right;
+    z-index: 10;
   }
   .floating-data .title {
     text-transform: uppercase;
     border-bottom: 1px solid #000;
     padding-bottom: 6px;
     margin-bottom: 8px;
-    font-size: 11px;
   }
   .fd-line { display: flex; justify-content: space-between; }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .container { padding: 32px 20px 220px 20px; }
+    h2 { width: 100%; }
+    .horaire, p { max-width: 100%; }
+    .horaire { flex-wrap: wrap; }
+  }
 </style>
 </head>
 <body>
+
 <div class="container">
   <h1>LE FOURNIL DE KERLEAU >>> EN CONSTRUCTION</h1>
   <div class="sub">Cuisson Bois / Soleil</div>
+
   <h2>Production Boulangère</h2>
   <p>Pain Quotidien / Pain Solaire / Pain du week-end / Pain Sportif</p>
+
   <h2>Horaires et Point de retrait</h2>
-  <div class="horaire"><span>Mardi</span><span>Marché de auray 6h30 - 13h</span></div>
+  <div class="horaire"><span>Mardi</span><span>Marché de Auray 6h30 - 13h</span></div>
   <div class="horaire"><span>Vendredi</span><span>Au fournil 17h - 19h</span></div>
+
   <h2>Où nous trouver ?</h2>
   <p>2, Kerleau<br>56950 Crac'h</p>
+
   <a class="btn" href="tel:+33297000000">02 97 00 00 00 — Pré-commande Whatsapp</a>
 </div>
 
@@ -85,12 +108,13 @@
 
 <script>
   function updateTime(){
-    const now = new Date();
-    document.getElementById('f-date').textContent = now.toLocaleDateString('fr-FR');
-    document.getElementById('f-time').textContent = now.toLocaleTimeString('fr-FR');
+    const d = new Date();
+    document.getElementById('f-date').textContent = d.toLocaleDateString('fr-FR');
+    document.getElementById('f-time').textContent = d.toLocaleTimeString('fr-FR');
   }
   setInterval(updateTime, 1000);
   updateTime();
 </script>
+
 </body>
 </html>
