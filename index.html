@@ -6,74 +6,32 @@
 <title>Le Fournil de Kerleau</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
-    * { box-sizing: border-box; }
-  body {
-    font-family: 'Source Code Pro', monospace;
-    margin: 0;
-    background: #F2E8CF;
-    color: #000;
-    -webkit-font-smoothing: antialiased;
-  }
-  .container {
-    max-width: 600px;
-    padding: 60px 40px 180px 40px;
-  }
-  h1 { font-weight: 600; font-size: 14px; line-height: 1.2; margin: 0 0 12px 0; text-transform: uppercase; }
-  .sub { font-size: 14px; text-transform: uppercase; margin-bottom: 60px; }
-  h2 {
-    font-weight: 600;
-    font-size: 14px;
-    text-transform: uppercase;
-    border-top: 1px solid #000;
-    padding-top: 12px;
-    margin: 50px 0 12px 0;
-    width: 200px;
-  }
-  p { font-size: 14px; line-height: 1.6; max-width: 400px; margin: 0; }
-  .horaire {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    max-width: 400px;
-    border-bottom: 1px dashed #a89a7a;
-    padding: 8px 0;
-    font-size: 14px;
-  }
-  .btn {
-    display: inline-block;
-    margin-top: 50px;
-    padding: 12px 24px;
-    background: #1a1a1a;
-    color: #F2E8CF;
-    text-decoration: none;
-    font-size: 14px;
-  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#F2E8CF;color:#000;font-family:'Source Code Pro',monospace;-webkit-font-smoothing:antialiased}
+  .container{max-width:600px;padding:60px 40px 180px}
+  h1{margin:0 0 12px;font-size:14px;font-weight:600;line-height:1.2;text-transform:uppercase}
+  .sub{margin-bottom:60px;font-size:14px;text-transform:uppercase}
+  h2{width:200px;margin:50px 0 12px;padding-top:12px;border-top:1px solid #000;font-size:14px;font-weight:600;text-transform:uppercase}
+  p{max-width:400px;margin:0;font-size:14px;line-height:1.6}
+  
+  .horaire{display:flex;justify-content:space-between;gap:20px;max-width:400px;padding:8px 0;border-bottom:1px dashed #a89a7a;font-size:14px}
+  .btn{display:inline-block;margin-top:50px;padding:12px 24px;background:#1a1a1a;color:#F2E8CF;text-decoration:none;font-size:14px}
 
-  /* OBJET FLOTTANT */
-  .floating-data {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 200px;
-    font-size: 11px;
-    line-height: 1.6;
-    text-align: right;
-    z-index: 10;
-  }
-  .floating-data .title {
-    text-transform: uppercase;
-    border-bottom: 1px solid #000;
-    padding-bottom: 6px;
-    margin-bottom: 8px;
-  }
-  .fd-line { display: flex; justify-content: space-between; }
+  /* Production */
+  .pains{display:grid;grid-template-columns:1fr 1fr;gap:40px 20px;max-width:400px}
+  .pain-title{font-size:14px;font-weight:600;text-transform:uppercase}
+  .pain-desc{margin-top:8px;font-size:13px;line-height:1.5}
 
-  /* MOBILE */
-  @media (max-width: 600px) {
-    .container { padding: 32px 20px 220px 20px; }
-    h2 { width: 100%; }
-    .horaire, p { max-width: 100%; }
-    .horaire { flex-wrap: wrap; }
+  /* Objet flottant */
+  .floating-data{position:fixed;bottom:20px;right:20px;width:200px;font-size:11px;line-height:1.6;text-align:right;z-index:10}
+  .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #000;text-transform:uppercase}
+  .fd-line{display:flex;justify-content:space-between}
+
+  @media(max-width:600px){
+    .container{padding:32px 20px 220px}
+    h2{width:100%}
+    .horaire,p{max-width:100%}
+    .horaire{flex-wrap:wrap}
   }
 </style>
 </head>
@@ -84,28 +42,23 @@
   <div class="sub">Cuisson Bois / Soleil</div>
 
   <h2>Production Boulangère</h2>
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px 20px; max-width: 400px;">
-
+  <div class="pains">
     <div>
-      <div style="font-size:14px; font-weight:600; text-transform:uppercase;">01 / Quotidien</div>
-      <div style="font-size:13px; line-height:1.5; margin-top:8px;">T80<br>Levain<br>Sel de Guérande<br>75% hydra<br>Cuisson bois<br>2,50€>Kg</div>
+      <div class="pain-title">01 / Quotidien</div>
+      <div class="pain-desc">T80<br>Levain<br>Sel de Guérande<br>75% hydra<br>Cuisson bois<br>2,50€>Kg</div>
     </div>
-
     <div>
-      <div style="font-size:14px; font-weight:600; text-transform:uppercase;">02 / Solaire</div>
-      <div style="font-size:13px; line-height:1.5; margin-top:8px;">T150 Complète<br>Four solaire<br>Selon soleil<br>3,20€</div>
+      <div class="pain-title">02 / Solaire</div>
+      <div class="pain-desc">T150 Complète<br>Four solaire<br>Selon soleil<br>3,20€</div>
     </div>
-
     <div>
-      <div style="font-size:14px; font-weight:600; text-transform:uppercase;">03 / Week-end</div>
-      <div style="font-size:13px; line-height:1.5; margin-top:8px;">T80 + Graines<br>Longue ferm.<br>Vendredi only<br>4,00€</div>
+      <div class="pain-title">03 / Week-end</div>
+      <div class="pain-desc">T80 + Graines<br>Longue ferm.<br>Vendredi only<br>4,00€</div>
     </div>
-
     <div>
-      <div style="font-size:14px; font-weight:600; text-transform:uppercase;">04 / Sportif</div>
-      <div style="font-size:13px; line-height:1.5; margin-top:8px;">Sarrasin + Noix<br>Protéines<br>Petite série<br>4,50€</div>
+      <div class="pain-title">04 / Sportif</div>
+      <div class="pain-desc">Sarrasin + Noix<br>Protéines<br>Petite série<br>4,50€</div>
     </div>
-
   </div>
 
   <h2>Horaires et Point de retrait</h2>
@@ -129,14 +82,9 @@
 </div>
 
 <script>
-  function updateTime(){
-    const d = new Date();
-    document.getElementById('f-date').textContent = d.toLocaleDateString('fr-FR');
-    document.getElementById('f-time').textContent = d.toLocaleTimeString('fr-FR');
-  }
-  setInterval(updateTime, 1000);
-  updateTime();
+  const fDate=document.getElementById('f-date'),fTime=document.getElementById('f-time');
+  function updateTime(){const d=new Date();fDate.textContent=d.toLocaleDateString('fr-FR');fTime.textContent=d.toLocaleTimeString('fr-FR')}
+  setInterval(updateTime,1000);updateTime();
 </script>
-
 </body>
 </html>
