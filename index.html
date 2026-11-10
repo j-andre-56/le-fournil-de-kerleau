@@ -11,17 +11,17 @@
   .marquee{position:fixed;top:0;left:0;width:100%;background:#000;color:#F2E8CF;font-size:11px;line-height:1;white-space:nowrap;overflow:hidden;z-index:20;padding:8px 0}
   .marquee-track{display:flex;width:max-content;animation:scroll 25s linear infinite}
   @keyframes scroll{to{transform:translateX(-50%)}}
-  .logo-wrapper{width:100%;display:flex;justify-content:center;padding:50px 0 20px;position:relative;z-index:2}
+  .logo-wrapper{position:fixed;top:27px;left:0;width:100%;display:flex;justify-content:center;padding:20px 0;background:#F2E8CF;z-index:15}
   .logo-top{display:block;width:120px;height:auto;animation:sunRotate 4s linear infinite;will-change:transform}
   @keyframes sunRotate{
-    0%{transform:rotate(0deg)}
-    25%{transform:rotate(90deg)}
-    50%{transform:rotate(180deg)}
-    75%{transform:rotate(270deg)}
-    100%{transform:rotate(360deg)}
+    0%{transform:rotate(0deg) scale(1)}
+    25%{transform:rotate(90deg) scale(1)}
+    50%{transform:rotate(180deg) scale(1)}
+    75%{transform:rotate(270deg) scale(1)}
+    100%{transform:rotate(360deg) scale(1)}
   }
   @media(prefers-reduced-motion:reduce){.logo-top,.marquee-track{animation:none}}
-  .container{max-width:600px;padding:0 40px 180px;position:relative;z-index:2}
+  .container{max-width:600px;padding:160px 40px 180px;position:relative;z-index:2}
   h1{margin:0 0 12px;font-size:14px;font-weight:600;line-height:1.2}
   .sub{margin-bottom:60px;font-size:14px}
   h2{width:250px;margin:50px 0 12px;padding-top:12px;border-top:1px solid #000;font-size:14px;font-weight:600}
@@ -35,7 +35,7 @@
   .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right;z-index:3}
   .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF}
   .fd-line{display:flex;justify-content:space-between}
-  @media(max-width:600px){.container{padding:0 20px 220px}.logo-wrapper{padding:32px 0 16px}}
+  @media(max-width:600px){.container{padding:140px 20px 220px}.logo-wrapper{padding:16px 0}}
 </style>
 </head>
 <body>
