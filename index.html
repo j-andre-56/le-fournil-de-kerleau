@@ -10,7 +10,6 @@
     --bg:#F2E8CF;
     --ink:#000;
     --ink-soft:#a89a7a;
-    --header-top:27px; /* hauteur marquee */
   }
   *{box-sizing:border-box}
   html{scrollbar-gutter:stable}
@@ -21,8 +20,6 @@
     font-family:'Source Code Pro',monospace;
     -webkit-font-smoothing:antialiased;
   }
-
-  /* HEADER = 1 seul calque fixe transparent */
   .header-fixed{
     position:fixed;
     inset:0 0 auto 0;
@@ -44,7 +41,6 @@
     animation:scroll 25s linear infinite;
   }
   @keyframes scroll{to{transform:translateX(-50%)}}
-
   .logo-wrapper{
     display:flex;
     justify-content:center;
@@ -61,11 +57,9 @@
   @media(prefers-reduced-motion:reduce){
     .marquee-track,.logo-top{animation:none}
   }
-
-  /* CONTENU */
   .container{
     max-width:600px;
-    padding:200px 40px 180px;
+    padding:240px 40px 180px;
   }
   h1{margin:0 0 12px;font-size:14px;font-weight:600;line-height:1.2}
   .sub{margin-bottom:60px;font-size:14px}
@@ -83,7 +77,6 @@
   .pains{display:grid;grid-template-columns:1fr 1fr;gap:40px 20px}
   .pain-title{font-size:14px;font-weight:600}
   .pain-desc{margin-top:8px;font-size:13px;line-height:1.5}
-
   .floating-data{
     position:fixed;bottom:20px;right:20px;width:200px;
     padding:12px;background:var(--ink);color:var(--bg);
@@ -91,22 +84,19 @@
   }
   .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--bg)}
   .fd-line{display:flex;justify-content:space-between}
-
   @media(max-width:600px){
-    .container{padding:160px 20px 220px}
+    .container{padding:220px 20px 220px}
     .logo-wrapper{padding:16px 0}
   }
 </style>
 </head>
 <body>
-
 <header class="header-fixed" aria-label="En-tête">
   <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span></div></div>
   <div class="logo-wrapper">
     <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau" width="120" height="120" decoding="async" onerror="this.style.display='none'">
   </div>
 </header>
-
 <main class="container">
   <h1>LE FOURNIL DE KERLEAU >>> SITE EN CONSTRUCTION</h1>
   <div class="sub">Cuisson Bois / Soleil</div>
@@ -124,14 +114,12 @@
   <p>2, Kerleau<br>56950 Crac'h</p>
   <a class="btn" href="tel:+33297000000">02 97 00 00 00 — Pré-commande Whatsapp</a>
 </main>
-
 <div class="floating-data">
   <div class="title">LIVE DATA</div>
   <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
   <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
   <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
 </div>
-
 <script>
 (() => {
   const tEl = document.getElementById('f-time');
