@@ -6,46 +6,108 @@
 <title>Le Fournil de Kerleau</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap');
-  *{box-sizing:border-box}
-  body{margin:0;background:#F2E8CF;color:#000;font-family:'Source Code Pro',monospace,monospace;padding-top:27px}
-  .marquee{position:fixed;top:0;left:0;width:100%;background:#000;color:#F2E8CF;font-size:11px;line-height:1;white-space:nowrap;overflow:hidden;z-index:20;padding:8px 0}
-  .marquee-track{display:flex;width:max-content;animation:scroll 25s linear infinite}
-  @keyframes scroll{to{transform:translateX(-50%)}}
-  .logo-wrapper{position:fixed;top:27px;left:0;width:100%;display:flex;justify-content:center;padding:20px 0;background:#F2E8CF;z-index:15}
-  .logo-top{display:block;width:120px;height:auto;animation:sunRotate 4s linear infinite;will-change:transform}
-  @keyframes sunRotate{
-    0%{transform:rotate(0deg) scale(1)}
-    25%{transform:rotate(90deg) scale(1)}
-    50%{transform:rotate(180deg) scale(1)}
-    75%{transform:rotate(270deg) scale(1)}
-    100%{transform:rotate(360deg) scale(1)}
+  :root{
+    --bg:#F2E8CF;
+    --ink:#000;
+    --ink-soft:#a89a7a;
+    --header-top:27px; /* hauteur marquee */
   }
-  @media(prefers-reduced-motion:reduce){.logo-top,.marquee-track{animation:none}}
-  .container{max-width:600px;padding:160px 40px 180px;position:relative;z-index:2}
+  *{box-sizing:border-box}
+  html{scrollbar-gutter:stable}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Code Pro',monospace;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* HEADER = 1 seul calque fixe transparent */
+  .header-fixed{
+    position:fixed;
+    inset:0 0 auto 0;
+    z-index:20;
+    background:transparent;
+  }
+  .marquee{
+    background:var(--ink);
+    color:var(--bg);
+    font-size:11px;
+    line-height:1;
+    white-space:nowrap;
+    overflow:hidden;
+    padding:8px 0;
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    animation:scroll 25s linear infinite;
+  }
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  .logo-wrapper{
+    display:flex;
+    justify-content:center;
+    padding:20px 0;
+    background:transparent;
+  }
+  .logo-top{
+    display:block;
+    width:120px;
+    height:auto;
+    animation:sunRotate 4s linear infinite;
+  }
+  @keyframes sunRotate{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){
+    .marquee-track,.logo-top{animation:none}
+  }
+
+  /* CONTENU */
+  .container{
+    max-width:600px;
+    padding:180px 40px 180px;
+  }
   h1{margin:0 0 12px;font-size:14px;font-weight:600;line-height:1.2}
   .sub{margin-bottom:60px;font-size:14px}
-  h2{width:250px;margin:50px 0 12px;padding-top:12px;border-top:1px solid #000;font-size:14px;font-weight:600}
+  h2{width:250px;margin:50px 0 12px;padding-top:12px;border-top:1px solid var(--ink);font-size:14px;font-weight:600}
   p,.horaire,.pains{max-width:400px}
   p{margin:0;font-size:14px;line-height:1.6}
-  .horaire{display:flex;justify-content:space-between;gap:20px;padding:8px 0;border-bottom:1px dashed #a89a7a;font-size:14px}
-  .btn{display:inline-block;margin-top:50px;padding:12px 24px;background:#1a1a1a;color:#F2E8CF;text-decoration:none;font-size:14px}
+  .horaire{
+    display:flex;justify-content:space-between;gap:20px;
+    padding:8px 0;border-bottom:1px dashed var(--ink-soft);font-size:14px
+  }
+  .btn{
+    display:inline-block;margin-top:50px;padding:12px 24px;
+    background:#1a1a1a;color:var(--bg);text-decoration:none;font-size:14px
+  }
   .pains{display:grid;grid-template-columns:1fr 1fr;gap:40px 20px}
   .pain-title{font-size:14px;font-weight:600}
   .pain-desc{margin-top:8px;font-size:13px;line-height:1.5}
-  .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right;z-index:3}
-  .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF}
+
+  .floating-data{
+    position:fixed;bottom:20px;right:20px;width:200px;
+    padding:12px;background:var(--ink);color:var(--bg);
+    font-size:11px;line-height:1.6;text-align:right;z-index:3
+  }
+  .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--bg)}
   .fd-line{display:flex;justify-content:space-between}
-  @media(max-width:600px){.container{padding:140px 20px 220px}.logo-wrapper{padding:16px 0}}
+
+  @media(max-width:600px){
+    .container{padding:160px 20px 220px}
+    .logo-wrapper{padding:16px 0}
+  }
 </style>
 </head>
 <body>
-<div class="marquee"><div class="marquee-track"><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span></div></div>
 
-<div class="logo-wrapper">
-  <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau" onerror="this.style.display='none'">
-</div>
+<header class="header-fixed" aria-label="En-tête">
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span></div></div>
+  <div class="logo-wrapper">
+    <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau" width="120" height="120" decoding="async" onerror="this.style.display='none'">
+  </div>
+</header>
 
-<div class="container">
+<main class="container">
   <h1>LE FOURNIL DE KERLEAU >>> SITE EN CONSTRUCTION</h1>
   <div class="sub">Cuisson Bois / Soleil</div>
   <h2>Production Boulangère</h2>
@@ -61,22 +123,25 @@
   <h2>Où nous trouver ?</h2>
   <p>2, Kerleau<br>56950 Crac'h</p>
   <a class="btn" href="tel:+33297000000">02 97 00 00 00 — Pré-commande Whatsapp</a>
-</div>
+</main>
+
 <div class="floating-data">
   <div class="title">LIVE DATA</div>
   <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
   <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
   <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
 </div>
+
 <script>
-(function(){
-  const el=document.getElementById('f-time');
-  const up=()=>el.textContent=new Date().toLocaleTimeString('fr-FR');
-  up();setInterval(up,1000);
+(() => {
+  const tEl = document.getElementById('f-time');
+  const cEl = document.getElementById('f-cloud');
+  const tick = () => tEl.textContent = new Date().toLocaleTimeString('fr-FR');
+  tick(); setInterval(tick, 1000);
   fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.029765&current=cloud_cover&timezone=auto')
-    .then(r=>r.json()).then(d=>{
-      if(d.current) document.getElementById('f-cloud').textContent=d.current.cloud_cover+'%';
-    }).catch(()=>{});
+    .then(r => r.json())
+    .then(d => { if(d?.current?.cloud_cover != null) cEl.textContent = d.current.cloud_cover + '%'; })
+    .catch(() => { cEl.textContent = '--%'; });
 })();
 </script>
 </body>
