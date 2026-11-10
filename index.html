@@ -11,8 +11,8 @@
   .marquee{position:fixed;top:0;left:0;width:100%;background:#000;color:#F2E8CF;font-size:11px;line-height:1;white-space:nowrap;overflow:hidden;z-index:20;padding:8px 0}
   .marquee-track{display:flex;width:max-content;animation:scroll 25s linear infinite}
   @keyframes scroll{to{transform:translateX(-50%)}}
-  .container{max-width:600px;padding:60px 40px 180px;position:relative;z-index:2;margin:0 auto}
-  .logo-top{display:block;width:120px;height:auto;margin:0 auto 40px auto;animation:sunRotate 4s linear infinite;will-change:transform}
+  .logo-wrapper{width:100%;display:flex;justify-content:center;padding:50px 0 20px;position:relative;z-index:2}
+  .logo-top{display:block;width:120px;height:auto;animation:sunRotate 4s linear infinite;will-change:transform}
   @keyframes sunRotate{
     0%{transform:rotate(0deg) scale(1)}
     25%{transform:rotate(90deg) scale(1)}
@@ -21,6 +21,7 @@
     100%{transform:rotate(360deg) scale(1)}
   }
   @media(prefers-reduced-motion:reduce){.logo-top,.marquee-track{animation:none}}
+  .container{max-width:600px;padding:0 40px 180px;position:relative;z-index:2}
   h1{margin:0 0 12px;font-size:14px;font-weight:600;line-height:1.2}
   .sub{margin-bottom:60px;font-size:14px}
   h2{width:250px;margin:50px 0 12px;padding-top:12px;border-top:1px solid #000;font-size:14px;font-weight:600}
@@ -34,13 +35,17 @@
   .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right;z-index:3}
   .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF}
   .fd-line{display:flex;justify-content:space-between}
-  @media(max-width:600px){.container{padding:32px 20px 220px}.horaire,p{max-width:100%}}
+  @media(max-width:600px){.container{padding:0 20px 220px}.logo-wrapper{padding:32px 0 16px}}
 </style>
 </head>
 <body>
 <div class="marquee"><div class="marquee-track"><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span></div></div>
-<div class="container">
+
+<div class="logo-wrapper">
   <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau" onerror="this.style.display='none'">
+</div>
+
+<div class="container">
   <h1>LE FOURNIL DE KERLEAU >>> SITE EN CONSTRUCTION</h1>
   <div class="sub">Cuisson Bois / Soleil</div>
   <h2>Production Boulangère</h2>
