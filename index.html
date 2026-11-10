@@ -6,43 +6,38 @@
 <title>Le Fournil de Kerleau</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap');
-  :root{--bg:#F2E8CF;--ink:#000;--ink-soft:#a89a7a}
+  :root{--bg:#F2E8CF;--ink:#000}
   *{box-sizing:border-box}
-  html{scrollbar-gutter:stable}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Source Code Pro',monospace;-webkit-font-smoothing:antialiased}
-  .header-fixed{position:fixed;inset:0 0 auto 0;z-index:20;background:transparent}
-  .marquee{background:var(--ink);color:var(--bg);font-size:11px;line-height:1;white-space:nowrap;overflow:hidden;padding:8px 0}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Source Code Pro',monospace}
+  .header-fixed{position:fixed;inset:0 0 auto 0;z-index:20}
+  .marquee{background:var(--ink);color:var(--bg);font-size:11px;white-space:nowrap;overflow:hidden;padding:8px 0}
   .marquee-track{display:flex;width:max-content;animation:scroll 25s linear infinite}
   @keyframes scroll{to{transform:translateX(-50%)}}
-  .logo-wrapper{display:flex;justify-content:center;padding:20px 0;background:transparent}
+  .logo-wrapper{display:flex;justify-content:center;padding:20px 0}
   .logo-top{display:block;width:120px;height:auto;animation:sunRotate 4s linear infinite}
   @keyframes sunRotate{to{transform:rotate(360deg)}}
-  @media(prefers-reduced-motion:reduce){.marquee-track,.logo-top{animation:none}}
   .container{max-width:600px;padding:200px 40px 220px}
-  h1{margin:0 0 12px;font-size:14px;font-weight:600;line-height:1.2}
+  h1{margin:0 0 12px;font-size:14px;font-weight:600}
   .sub{margin-bottom:60px;font-size:14px}
   h2{width:250px;margin:50px 0 12px;padding-top:12px;border-top:1px solid var(--ink);font-size:14px;font-weight:600}
   p,.horaire,.pains{max-width:400px}
   p{margin:0;font-size:14px;line-height:1.6}
-  .horaire{display:flex;justify-content:space-between;gap:20px;padding:8px 0;border-bottom:1px dashed var(--ink-soft);font-size:14px}
+  .horaire{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #a89a7a;font-size:14px}
   .btn{display:inline-block;margin-top:50px;padding:12px 24px;background:#1a1a1a;color:var(--bg);text-decoration:none;font-size:14px}
-  .pains{display:grid;grid-template-columns:1fr 1fr;gap:40px 20px}
+  .pains{display:flex;flex-direction:column;gap:30px}
   .pain-title{font-size:14px;font-weight:600}
   .pain-desc{margin-top:8px;font-size:13px;line-height:1.5}
-  .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:var(--ink);color:var(--bg);font-size:11px;line-height:1.6;text-align:right;z-index:3}
+  .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:var(--ink);color:var(--bg);font-size:11px;line-height:1.6;text-align:right}
   .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--bg)}
   .fd-line{display:flex;justify-content:space-between}
-  @media(max-width:600px){
-    .container{padding:200px 20px 220px}
-    .logo-wrapper{padding:16px 0}
-  }
+  @media(max-width:600px){.container{padding:200px 20px 220px}}
 </style>
 </head>
 <body>
-<header class="header-fixed" aria-label="En-tête">
-  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span></div></div>
+<header class="header-fixed">
+  <div class="marquee"><div class="marquee-track"><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span><span>FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span></div></div>
   <div class="logo-wrapper">
-    <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau" width="120" height="120" decoding="async" onerror="this.style.display='none'">
+    <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau" width="120" height="120" onerror="this.style.display='none'">
   </div>
 </header>
 <main class="container">
@@ -69,14 +64,10 @@
   <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
 </div>
 <script>
-(() => {
-  const tEl = document.getElementById('f-time');
-  const cEl = document.getElementById('f-cloud');
-  const tick = () => tEl.textContent = new Date().toLocaleTimeString('fr-FR');
-  tick(); setInterval(tick, 1000);
-  fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.029765&current=cloud_cover&timezone=auto')
-    .then(r => r.json()).then(d => { if(d?.current?.cloud_cover != null) cEl.textContent = d.current.cloud_cover + '%'; }).catch(()=>{});
-})();
+const tEl=document.getElementById('f-time'),cEl=document.getElementById('f-cloud');
+setInterval(()=>tEl.textContent=new Date().toLocaleTimeString('fr-FR'),1000);
+tEl.textContent=new Date().toLocaleTimeString('fr-FR');
+fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.029765&current=cloud_cover&timezone=auto').then(r=>r.json()).then(d=>{if(d?.current) cEl.textContent=d.current.cloud_cover+'%'}).catch(()=>{});
 </script>
 </body>
 </html>
