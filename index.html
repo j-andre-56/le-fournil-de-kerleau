@@ -28,7 +28,9 @@ p{margin:0;font-size:14px;line-height:1.6}
 .floating-data{padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right}
 .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF}
 .fd-line{display:flex;justify-content:space-between}
-.btn-wa-float{display:block;text-align:center;padding:12px;background:#000;color:#F2E8CF;text-decoration:none;font-size:12px;border:1px solid #000}
+.btn-wa-float{display:block;overflow:hidden;white-space:nowrap;padding:12px 0;background:#000;color:#F2E8CF;text-decoration:none;font-size:12px;border:1px solid #000}
+.wa-track{display:flex;width:max-content;animation:waScroll 8s linear infinite}
+@keyframes waScroll{to{transform:translateX(-50%)}}
 </style>
 </head>
 <body>
@@ -56,7 +58,12 @@ p{margin:0;font-size:14px;line-height:1.6}
     <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
     <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
   </div>
-  <a class="btn-wa-float" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">COMMANDE WHATSAPP >>></a>
+  <a class="btn-wa-float" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">
+    <div class="wa-track">
+      <span>COMMANDE WHATSAPP >>> COMMANDE WHATSAPP >>>&nbsp;</span>
+      <span>COMMANDE WHATSAPP >>> COMMANDE WHATSAPP >>>&nbsp;</span>
+    </div>
+  </a>
 </div>
 
 <script>
