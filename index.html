@@ -86,11 +86,7 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.02
 
 <script type="module">
   // TON CODE DU FOURNIL, EN VRAI STRUDEL
-  // Pour changer de groove : tu colles ton code de strudel.cc ici, entre les ` `
-  const CODE = `// "(4S,4aS,8aR)-4,8a-Dimethyloctahydronaphthalen-4a(2H)-ol dub" @by superlocrianlizardbuzzard
-
-// minimal synth colors
-// writing a string comprising several lines with backticks ``
+  // Pour changer de groove : tu colles ton code de strudel.cc ici, entre les `
 $: note(`<
 [<[[d4] [g3]] [d4, d5]>] [- [[a#3, a#4] [a3, a4]@7] [e4, e5]] [<[a4, a5] -> <- - [d4, d5]> [g3, g4]] [[a#3, a#4] [f4, f5]] [-] [-]
 <[e3, e4] [e4 d4]> <[d3, d4] [d4 db4]> [g3,g4] [f#3@5, f#4@5 -] [e3, e4] <- - [- b3, b4]>
@@ -198,13 +194,7 @@ all(
   .lpf(saw.range(222, 2222).slow(4)).shape(saw.range(.1, .5).slow(4)))
 
   .when("<0!24 1!4>", x=>x.struct("x(5,8)").lpf(saw.range(222, 2222).slow(4)) .shape(saw.range(.1, .5).slow(4)).ply("<1!24 1!4 1!24 1 [1 2] [1 2] 2 1!999>"))
-   )
-    
-    
-  
-
-
-// @version 1.1`;
+   )`;
 
   let ready = false;
 
