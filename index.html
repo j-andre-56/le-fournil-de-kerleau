@@ -60,22 +60,9 @@ p{margin:0;font-size:14px;line-height:1.6}
   <a class="btn" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">02 97 00 00 00 — Pré-commande Whatsapp</a>
 
   <h2>LIVE CODING >>> LE GROOVE DU FOURNIL</h2>
-  <p>Modifie le code si tu veux, puis appuie sur PLAY. C'est le four qui joue.</p>
-  <div style="margin-top:20px; background:#000; color:#F2E8CF; padding:16px;">
-    <textarea id="strudel-code" style="width:100%; height:180px; background:#000; color:#F2E8CF; border:1px solid #F2E8CF; font-family:'Source Code Pro',monospace; font-size:12px; line-height:1.6; padding:12px; resize:vertical;">setcpm(110/4)
-stack(
-  s("bd ~ bd ~ bd ~ bd ~").bank("RolandTR808"),
-  s("~ hh ~ hh ~ hh ~ hh").bank("RolandTR808"),
-  s("~ ~ sd ~ ~ ~ sd ~").bank("RolandTR808"),
-  note("c2 ~ c2 ~ eb2 ~ g2 ~ f2 ~ eb2 ~").s("sawtooth").lpf(600).gain(0.5),
-  note("c4 eb4 g4 eb4 ~ a4 g4 eb4").s("triangle").gain(0.4).room(0.4).delay(0.3)
-)</textarea>
-    <div style="display:flex; gap:10px; margin-top:12px;">
-      <button id="play-btn" style="flex:1; background:#F2E8CF; color:#000; border:none; padding:12px; font-family:inherit; font-size:14px; cursor:pointer;">▶ PLAY LE FOURNIL</button>
-      <button id="stop-btn" style="flex:1; background:transparent; color:#F2E8CF; border:1px solid #F2E8CF; padding:12px; font-family:inherit; font-size:14px; cursor:pointer;">■ STOP</button>
-    </div>
-    <div style="font-size:11px; margin-top:10px; opacity:0.8;">ASTUCE : Change une note, par exemple c4 -> d4, et re-appuie sur PLAY.</div>
-    <iframe id="strudel-frame" style="width:100%; height:320px; border:1px solid #F2E8CF; margin-top:16px; background:#000; display:none;" allow="autoplay; midi; microphone"></iframe>
+  <div style="display:flex; gap:10px; margin-top:12px;">
+    <button id="play-btn" style="flex:1; background:#000; color:#F2E8CF; border:none; padding:14px; font-family:inherit; font-size:14px; cursor:pointer;">▶ PLAY</button>
+    <button id="stop-btn" style="flex:1; background:transparent; color:#000; border:1px solid #000; padding:14px; font-family:inherit; font-size:14px; cursor:pointer;">■ STOP</button>
   </div>
 
 <h2>PHILOSOPHIE D'ENTREPRISE</h2>
@@ -93,22 +80,61 @@ setInterval(()=>tEl.textContent=new Date().toLocaleTimeString('fr-FR'),1000);
 tEl.textContent=new Date().toLocaleTimeString('fr-FR');
 fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.029765&current=cloud_cover&timezone=auto').then(r=>r.json()).then(d=>{if(d?.current) cEl.textContent=d.current.cloud_cover+'%'}).catch(()=>{});
 </script>
+<script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.js"></script>
 <script>
+// TON CODE STRUDEL EST ICI, CACHÉ - LE VISITEUR NE VOIT QUE PLAY / STOP
+// setcpm(110/4)
+// stack(
+//   s("bd ~ bd ~ bd ~ bd ~"),
+//   s("~ hh ~ hh ~ hh ~ hh"),
+//   s("~ ~ sd ~ ~ ~ sd ~"),
+//   note("c2 ~ c2 ~ eb2 ~ g2 ~ f2 ~ eb2 ~"),
+//   note("c4 eb4 g4 eb4 ~ a4 g4 eb4")
+// )
 const playBtn = document.getElementById('play-btn');
 const stopBtn = document.getElementById('stop-btn');
-const codeEl = document.getElementById('strudel-code');
-const frame = document.getElementById('strudel-frame');
-playBtn.addEventListener('click', () => {
-  const code = codeEl.value;
-  frame.src = 'https://strudel.cc/#' + encodeURIComponent(code);
-  frame.style.display = 'block';
-  playBtn.textContent = '♪ ÇA CHARGE... APPUIE SUR PLAY DANS LE CADRE';
-  frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+let started = false;
+
+async function initGroove() {
+  await Tone.start();
+  Tone.getTransport().bpm.value = 110;
+
+  const kick = new Tone.MembraneSynth({ pitchDecay: 0.02, octaves: 6, envelope: { attack: 0.001, decay: 0.4, sustain: 0.01, release: 0.4 } }).toDestination();
+  const hat = new Tone.NoiseSynth({ noise: { type: 'white' }, envelope: { attack: 0.001, decay: 0.05, sustain: 0 } }).toDestination();
+  hat.volume.value = -18;
+  const snare = new Tone.NoiseSynth({ noise: { type: 'pink' }, envelope: { attack: 0.001, decay: 0.15, sustain: 0 } }).toDestination();
+  snare.volume.value = -10;
+  const bass = new Tone.MonoSynth({ oscillator: { type: 'sawtooth' }, filter: { Q: 2, type: 'lowpass', rolloff: -24 }, envelope: { attack: 0.01, decay: 0.2, sustain: 0.3, release: 0.2 }, filterEnvelope: { attack: 0.01, decay: 0.1, sustain: 0.2, baseFrequency: 200, octaves: 2 } }).toDestination();
+  bass.volume.value = -8;
+  const lead = new Tone.PolySynth(Tone.Synth, { oscillator: { type: 'triangle' }, envelope: { attack: 0.01, decay: 0.2, sustain: 0.2, release: 0.3 } }).toDestination();
+  lead.volume.value = -12;
+
+  const bassNotes = ["C2", null, "C2", null, "Eb2", null, "G2", null, "F2", null, "Eb2", null];
+  const leadNotes = ["C4", "Eb4", "G4", "Eb4", null, "A4", "G4", "Eb4"];
+
+  let step = 0;
+  Tone.getTransport().scheduleRepeat((time) => {
+    const i = step % 16;
+    const b = Math.floor(step / 2) % 8;
+    if (i % 4 === 0) kick.triggerAttackRelease("C1", "8n", time);
+    if (i % 4 === 2) hat.triggerAttackRelease("16n", time);
+    if (i === 4 || i === 12) snare.triggerAttackRelease("16n", time);
+    if (i % 2 === 0 && bassNotes[b]) bass.triggerAttackRelease(bassNotes[b], "8n", time);
+    if (i % 2 === 0 && leadNotes[b]) lead.triggerAttackRelease(leadNotes[b], "8n", time);
+    step++;
+  }, "16n");
+  started = true;
+}
+
+playBtn.addEventListener('click', async () => {
+  if (!started) await initGroove();
+  Tone.getTransport().start();
+  playBtn.textContent = '♪ ÇA JOUE...';
 });
+
 stopBtn.addEventListener('click', () => {
-  frame.src = 'about:blank';
-  frame.style.display = 'none';
-  playBtn.textContent = '▶ PLAY LE FOURNIL';
+  Tone.getTransport().stop();
+  playBtn.textContent = '▶ PLAY';
 });
 </script>
 </body>
