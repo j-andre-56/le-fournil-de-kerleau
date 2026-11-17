@@ -57,13 +57,12 @@ p{margin:0;font-size:14px;line-height:1.6}
   <div class="horaire"><span>Vendredi</span><span>Au fournil 17h - 19h</span></div>
   <h2>INFORMATIONS COMPLEMENTAIRES ?</h2>
   <p>Julien ANDRE<br>2, Kerleau<br>56950 Crac'h</p>
-  <a class="btn" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">06 51 65 30 75 — Pré-commande Whatsapp</a>
-<h2>PHILOSOPHIE D'ENTREPRISE</h2>
-  <p>Nous pensons que le monde est complexe et qu'il ne faut pas tomber dans les caricatures. Notre priorité, c'est l'accessibilité et la résistance de notre modèle face aux multiples crises.<br><br>Nous sommes conscients que notre modèle est imparfait et, dans une certaine mesure, incohérent. Nous avançons lentement, avec ce que nous croyons comprendre sur le moment. Et ce n'est pas chose aisée : nos biais cognitifs nous jouent parfois des tours.<br><br>Nous pensons qu'un modèle qui ne repose que sur une seule source est fragile. En cas de sécheresse, de crise ou de pénurie, il prend le risque de s'effondrer. Nous sécurisons nos approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>Toutefois, nous sommes très exigeants sur notre savoir-faire : process, tour de main, hygiène, connaissance technologique... Beaucoup de néo-boulangers travaillent de très bons produits, mais massacrent le savoir-faire. Or de bonnes matières premières ne font pas tout.</p>
-<h2>LIVE CODING >>> LE GROOVE DU FOURNIL</h2>
-<p>Modifie le code si tu veux, puis appuie sur PLAY. C'est le four qui joue.</p>
-<div style="margin-top:20px; background:#000; color:#F2E8CF; padding:16px;">
-  <textarea id="strudel-code" style="width:100%; height:180px; background:#000; color:#F2E8CF; border:1px solid #F2E8CF; font-family:'Source Code Pro',monospace; font-size:12px; line-height:1.6; padding:12px; resize:vertical;">setcpm(110/4)
+  <a class="btn" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">02 97 00 00 00 — Pré-commande Whatsapp</a>
+
+  <h2>LIVE CODING >>> LE GROOVE DU FOURNIL</h2>
+  <p>Modifie le code si tu veux, puis appuie sur PLAY. C'est le four qui joue.</p>
+  <div style="margin-top:20px; background:#000; color:#F2E8CF; padding:16px;">
+    <textarea id="strudel-code" style="width:100%; height:180px; background:#000; color:#F2E8CF; border:1px solid #F2E8CF; font-family:'Source Code Pro',monospace; font-size:12px; line-height:1.6; padding:12px; resize:vertical;">setcpm(110/4)
 stack(
   s("bd ~ bd ~ bd ~ bd ~").bank("RolandTR808"),
   s("~ hh ~ hh ~ hh ~ hh").bank("RolandTR808"),
@@ -71,13 +70,16 @@ stack(
   note("c2 ~ c2 ~ eb2 ~ g2 ~ f2 ~ eb2 ~").s("sawtooth").lpf(600).gain(0.5),
   note("c4 eb4 g4 eb4 ~ a4 g4 eb4").s("triangle").gain(0.4).room(0.4).delay(0.3)
 )</textarea>
-  <div style="display:flex; gap:10px; margin-top:12px;">
-    <button id="play-btn" style="flex:1; background:#F2E8CF; color:#000; border:none; padding:12px; font-family:inherit; font-size:14px; cursor:pointer;">▶ PLAY LE FOURNIL</button>
-    <button id="stop-btn" style="flex:1; background:transparent; color:#F2E8CF; border:1px solid #F2E8CF; padding:12px; font-family:inherit; font-size:14px; cursor:pointer;">■ STOP</button>
+    <div style="display:flex; gap:10px; margin-top:12px;">
+      <button id="play-btn" style="flex:1; background:#F2E8CF; color:#000; border:none; padding:12px; font-family:inherit; font-size:14px; cursor:pointer;">▶ PLAY LE FOURNIL</button>
+      <button id="stop-btn" style="flex:1; background:transparent; color:#F2E8CF; border:1px solid #F2E8CF; padding:12px; font-family:inherit; font-size:14px; cursor:pointer;">■ STOP</button>
+    </div>
+    <div style="font-size:11px; margin-top:10px; opacity:0.8;">ASTUCE : Change une note, par exemple c4 -> d4, et re-appuie sur PLAY.</div>
+    <iframe id="strudel-frame" style="width:100%; height:320px; border:1px solid #F2E8CF; margin-top:16px; background:#000; display:none;" allow="autoplay; midi; microphone"></iframe>
   </div>
-  <div style="font-size:11px; margin-top:10px; opacity:0.8;">ASTUCE : Change une note, par exemple c4 -> d4, et re-appuie sur PLAY.</div>
-  <iframe id="strudel-frame" style="width:100%; height:320px; border:1px solid #F2E8CF; margin-top:16px; background:#000; display:none;" allow="autoplay; midi; microphone"></iframe>
-</div>
+
+<h2>PHILOSOPHIE D'ENTREPRISE</h2>
+  <p>Nous pensons que le monde est complexe et qu'il ne faut pas tomber dans les caricatures. Notre priorité, c'est l'accessibilité et la résistance de notre modèle face aux multiples crises.<br><br>Nous sommes conscients que notre modèle est imparfait et, dans une certaine mesure, incohérent. Nous avançons lentement, avec ce que nous croyons comprendre sur le moment. Et ce n'est pas chose aisée : nos biais cognitifs nous jouent parfois des tours.<br><br>Nous pensons qu'un modèle qui ne repose que sur une seule source est fragile. En cas de sécheresse, de crise ou de pénurie, il prend le risque de s'effondrer. Nous sécurisons nos approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>Toutefois, nous sommes très exigeants sur notre savoir-faire : process, tour de main, hygiène, connaissance technologique... Beaucoup de néo-boulangers travaillent de très bons produits, mais massacrent le savoir-faire. Or de bonnes matières premières ne suffisent pas sans la maîtrise du métier.</p>
 </main>
 <div class="floating-data">
   <div class="title">LIVE DATA</div>
@@ -90,6 +92,24 @@ const tEl=document.getElementById('f-time'),cEl=document.getElementById('f-cloud
 setInterval(()=>tEl.textContent=new Date().toLocaleTimeString('fr-FR'),1000);
 tEl.textContent=new Date().toLocaleTimeString('fr-FR');
 fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.029765&current=cloud_cover&timezone=auto').then(r=>r.json()).then(d=>{if(d?.current) cEl.textContent=d.current.cloud_cover+'%'}).catch(()=>{});
+</script>
+<script>
+const playBtn = document.getElementById('play-btn');
+const stopBtn = document.getElementById('stop-btn');
+const codeEl = document.getElementById('strudel-code');
+const frame = document.getElementById('strudel-frame');
+playBtn.addEventListener('click', () => {
+  const code = codeEl.value;
+  frame.src = 'https://strudel.cc/#' + encodeURIComponent(code);
+  frame.style.display = 'block';
+  playBtn.textContent = '♪ ÇA CHARGE... APPUIE SUR PLAY DANS LE CADRE';
+  frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+stopBtn.addEventListener('click', () => {
+  frame.src = 'about:blank';
+  frame.style.display = 'none';
+  playBtn.textContent = '▶ PLAY LE FOURNIL';
+});
 </script>
 </body>
 </html>
