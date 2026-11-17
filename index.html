@@ -32,12 +32,13 @@ p{margin:0;font-size:14px;line-height:1.6}
 .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right}
 .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF}
 .fd-line{display:flex;justify-content:space-between}
-/* PAVÉ STRUDEL */
-.strudel-line{display:flex;flex-wrap:wrap;gap:0;padding:3px 0;font-size:12px;line-height:1.8;white-space:pre}
+.strudel-line{display:flex;flex-wrap:wrap;padding:3px 0;font-size:12px;line-height:1.8}
 .strudel-prefix{color:#8a8a8a;margin-right:6px}
-.tok{padding:1px 4px;border-radius:2px;color:#F2E8CF}
+.tok{padding:1px 4px;color:#F2E8CF}
 .tok.active{background:#F2E8CF;color:#000;font-weight:700}
-.tok.rest{opacity:0.35}
+.tok.rest{opacity:.35}
+details{margin-top:10px;background:#eee;padding:10px;font-size:12px}
+details summary{cursor:pointer}
 </style>
 </head>
 <body>
@@ -71,11 +72,22 @@ p{margin:0;font-size:14px;line-height:1.6}
     <button id="stop-btn" style="flex:1; background:transparent; color:#000; border:1px solid #000; padding:14px; font-family:inherit; font-size:14px; cursor:pointer;">■ STOP</button>
   </div>
 
-  <!-- PAVÉ STRUDEL - NOTES COMME DANS STRUDEL -->
   <div style="margin-top:12px; background:#000; color:#F2E8CF; padding:14px;">
-    <div style="display:flex; justify-content:space-between; font-size:11px; opacity:0.7; margin-bottom:6px;"><span>strudel.cc — live</span><span id="notes-now">-- / --</span></div>
+    <div style="display:flex; justify-content:space-between; font-size:11px; opacity:.7; margin-bottom:6px;"><span>strudel.cc — live</span><span id="notes-now">-- / --</span></div>
     <div id="strudel-pave"></div>
+    <div id="strudel-error" style="color:#ff6b6b; font-size:11px; margin-top:6px; display:none;"></div>
   </div>
+
+  <!-- SEULE ZONE OÙ TU INTERVIENS -->
+  <details>
+    <summary>EDITER MON LIVE CODING</summary>
+    <textarea id="my-code" style="width:100%; height:140px; font-family:inherit; font-size:12px; padding:10px; margin-top:10px;">s("bd ~ bd ~ bd ~ bd ~")
+s("~ hh ~ hh ~ hh ~ hh")
+s("~ ~ sd ~ ~ ~ sd ~")
+note("c2 ~ c2 ~ eb2 g2 f2 eb2")
+note("c4 eb4 g4 eb4 ~ a4 g4 eb4")</textarea>
+    <div style="font-size:11px; margin-top:8px;">8 sons par ligne, ~ = silence. PLAY = mettre à jour + jouer.</div>
+  </details>
 
 <h2>PHILOSOPHIE D'ENTREPRISE</h2>
   <p>Nous pensons que le monde est complexe et qu'il ne faut pas tomber dans les caricatures. Notre priorité, c'est l'accessibilité et la résistance de notre modèle face aux multiples crises.<br><br>Nous sommes conscients que notre modèle est imparfait et, dans une certaine mesure, incohérent. Nous avançons lentement, avec ce que nous croyons comprendre sur le moment. Et ce n'est pas chose aisée : nos biais cognitifs nous jouent parfois des tours.<br><br>Nous pensons qu'un modèle qui ne repose que sur une seule source est fragile. En cas de sécheresse, de crise ou de pénurie, il prend le risque de s'effondrer. Nous sécurisons nos approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>Toutefois, nous sommes très exigeants sur notre savoir-faire : process, tour de main, hygiène, connaissance technologique... Beaucoup de néo-boulangers travaillent de très bons produits, mais massacrent le savoir-faire. Or de bonnes matières premières ne suffisent pas sans la maîtrise du métier.</p>
@@ -94,97 +106,57 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.02
 </script>
 <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.js"></script>
 <script>
-const playBtn = document.getElementById('play-btn');
-const stopBtn = document.getElementById('stop-btn');
-const pave = document.getElementById('strudel-pave');
-const notesNow = document.getElementById('notes-now');
-let started = false;
+// ADN FOURNIL : 1 SOURCE = TON CODE, 1 FONCTION = LIRE + AFFICHER + JOUER
+const codeEl=document.getElementById('my-code'),pave=document.getElementById('strudel-pave'),errEl=document.getElementById('strudel-error'),nowEl=document.getElementById('notes-now');
+let started=false,step=0;
 
-// PATTERNS EXACTEMENT COMME DANS STRUDEL
-const patterns = [
-  { prefix: 's("', suffix: '")', tokens: ["bd","~","bd","~","bd","~","bd","~"] },
-  { prefix: 's("', suffix: '")', tokens: ["~","hh","~","hh","~","hh","~","hh"] },
-  { prefix: 's("', suffix: '")', tokens: ["~","~","sd","~","~","~","sd","~"] },
-  { prefix: 'note("', suffix: '")', tokens: ["c2","~","c2","~","eb2","g2","f2","eb2"] },
-  { prefix: 'note("', suffix: '")', tokens: ["c4","eb4","g4","eb4","~","a4","g4","eb4"] },
-];
-
-// On construit le pavé Strudel
-patterns.forEach((line, li) => {
-  const row = document.createElement('div');
-  row.className = 'strudel-line';
-  const pre = document.createElement('span');
-  pre.className = 'strudel-prefix';
-  pre.textContent = line.prefix;
-  row.appendChild(pre);
-  line.tokens.forEach((tok, ti) => {
-    const s = document.createElement('span');
-    s.className = 'tok' + (tok === '~' ? ' rest' : '');
-    s.id = `tok-${li}-${ti}`;
-    s.textContent = tok;
-    row.appendChild(s);
-    const space = document.createElement('span');
-    space.textContent = ' ';
-    row.appendChild(space);
+function lire(){
+  const lignes=[...codeEl.value.matchAll(/(s|note)\("([^"]+)"\)/g)].map(m=>{
+    let t=m[2].trim().split(/\s+/); while(t.length<8)t.push("~"); return {type:m[1],pre:m[1]+'("',tokens:t.slice(0,8)};
   });
-  const suf = document.createElement('span');
-  suf.className = 'strudel-prefix';
-  suf.textContent = line.suffix;
-  row.appendChild(suf);
-  pave.appendChild(row);
-});
-
-function updateNotes(b) {
-  patterns.forEach((line, li) => {
-    line.tokens.forEach((_, ti) => {
-      const el = document.getElementById(`tok-${li}-${ti}`);
-      if (el) el.classList.toggle('active', ti === b);
-    });
+  // AFFICHAGE PAVÉ
+  pave.innerHTML=""; errEl.style.display="none";
+  if(!lignes.length){errEl.textContent="ERREUR >>> Écris comme : s(\"bd ~ bd ~\") ou note(\"c4 ~ g4 ~\")"; errEl.style.display="block";}
+  lignes.forEach((l,li)=>{
+    const row=document.createElement('div'); row.className='strudel-line';
+    row.innerHTML=`<span class="strudel-prefix">${l.pre}</span>`+l.tokens.map((tok,ti)=>`<span class="tok${tok==='~'?' rest':''}" id="tok-${li}-${ti}">${tok}</span> `).join('')+`<span class="strudel-prefix">")</span>`;
+    pave.appendChild(row);
   });
-  notesNow.textContent = patterns[3].tokens[b] + ' / ' + patterns[4].tokens[b];
+  return lignes;
 }
+function allumer(b){
+  document.querySelectorAll('.tok').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll(`[id$="-${b}"]`).forEach(el=>el.classList.add('active'));
+  const notes=lire().filter(l=>l.type==='note');
+  nowEl.textContent=notes.length>=2?notes[0].tokens[b]+' / '+notes[1].tokens[b]:notes[0]?notes[0].tokens[b]:'--';
+}
+const versTone=t=>t==='~'?null:t[0].toUpperCase()+t.slice(1);
 
-const bassNotes = ["C2", null, "C2", null, "Eb2", "G2", "F2", "Eb2"];
-const leadNotes = ["C4", "Eb4", "G4", "Eb4", null, "A4", "G4", "Eb4"];
-
-async function initGroove() {
-  await Tone.start();
-  Tone.getTransport().bpm.value = 110;
-  const kick = new Tone.MembraneSynth({ pitchDecay: 0.02, octaves: 6, envelope: { attack: 0.001, decay: 0.4, sustain: 0.01, release: 0.4 } }).toDestination();
-  const hat = new Tone.NoiseSynth({ noise: { type: 'white' }, envelope: { attack: 0.001, decay: 0.05, sustain: 0 } }).toDestination();
-  hat.volume.value = -18;
-  const snare = new Tone.NoiseSynth({ noise: { type: 'pink' }, envelope: { attack: 0.001, decay: 0.15, sustain: 0 } }).toDestination();
-  snare.volume.value = -10;
-  const bass = new Tone.MonoSynth({ oscillator: { type: 'sawtooth' }, filter: { Q: 2, type: 'lowpass', rolloff: -24 }, envelope: { attack: 0.01, decay: 0.2, sustain: 0.3, release: 0.2 }, filterEnvelope: { attack: 0.01, decay: 0.1, sustain: 0.2, baseFrequency: 200, octaves: 2 } }).toDestination();
-  bass.volume.value = -8;
-  const lead = new Tone.PolySynth(Tone.Synth, { oscillator: { type: 'triangle' }, envelope: { attack: 0.01, decay: 0.2, sustain: 0.2, release: 0.3 } }).toDestination();
-  lead.volume.value = -12;
-  let step = 0;
-  Tone.getTransport().scheduleRepeat((time) => {
-    const i = step % 16;
-    const b = Math.floor(step / 2) % 8;
-    if (i % 4 === 0) kick.triggerAttackRelease("C1", "8n", time);
-    if (i % 4 === 2) hat.triggerAttackRelease("16n", time);
-    if (i === 4 || i === 12) snare.triggerAttackRelease("16n", time);
-    if (i % 2 === 0 && bassNotes[b]) bass.triggerAttackRelease(bassNotes[b], "8n", time);
-    if (i % 2 === 0 && leadNotes[b]) lead.triggerAttackRelease(leadNotes[b], "8n", time);
-    Tone.getDraw().schedule(() => updateNotes(b), time);
+async function demarrer(){
+  await Tone.start(); Tone.getTransport().bpm.value=110;
+  const kick=new Tone.MembraneSynth({pitchDecay:.02,octaves:6,envelope:{attack:.001,decay:.4,sustain:.01,release:.4}}).toDestination();
+  const hat=new Tone.NoiseSynth({noise:{type:'white'},envelope:{attack:.001,decay:.05,sustain:0}}).toDestination(); hat.volume.value=-18;
+  const snare=new Tone.NoiseSynth({noise:{type:'pink'},envelope:{attack:.001,decay:.15,sustain:0}}).toDestination(); snare.volume.value=-10;
+  const basse=new Tone.MonoSynth({oscillator:{type:'sawtooth'},filter:{Q:2,type:'lowpass',rolloff:-24},envelope:{attack:.01,decay:.2,sustain:.3,release:.2},filterEnvelope:{attack:.01,decay:.1,sustain:.2,baseFrequency:200,octaves:2}}).toDestination(); basse.volume.value=-8;
+  const lead=new Tone.PolySynth(Tone.Synth,{oscillator:{type:'triangle'},envelope:{attack:.01,decay:.2,sustain:.2,release:.3}}).toDestination(); lead.volume.value=-12;
+  Tone.getTransport().scheduleRepeat((time)=>{
+    const b=Math.floor(step/2)%8;
+    if(step%2===0){
+      lire().forEach(l=>{
+        const tok=l.tokens[b]; if(tok==='~')return;
+        if(l.type==='s'){ if(tok==='bd')kick.triggerAttackRelease("C1","8n",time); if(tok==='hh')hat.triggerAttackRelease("16n",time); if(tok==='sd')snare.triggerAttackRelease("16n",time); }
+        else{ const n=versTone(tok); if(!n)return; (parseInt(tok.slice(-1))<=2?basse:lead).triggerAttackRelease(n,"8n",time); }
+      });
+      Tone.getDraw().schedule(()=>allumer(b),time);
+    }
     step++;
-  }, "16n");
-  started = true;
+  },"16n");
+  started=true;
 }
 
-playBtn.addEventListener('click', async () => {
-  if (!started) await initGroove();
-  Tone.getTransport().start();
-  playBtn.textContent = '♪ ÇA JOUE...';
-});
-stopBtn.addEventListener('click', () => {
-  Tone.getTransport().stop();
-  playBtn.textContent = '▶ PLAY';
-  notesNow.textContent = '-- / --';
-  document.querySelectorAll('.tok').forEach(el => el.classList.remove('active'));
-});
+codeEl.addEventListener('input',lire); lire();
+document.getElementById('play-btn').addEventListener('click',async()=>{lire(); if(!started)await demarrer(); Tone.getTransport().start(); document.getElementById('play-btn').textContent='♪ ÇA JOUE...';});
+document.getElementById('stop-btn').addEventListener('click',()=>{Tone.getTransport().stop(); document.getElementById('play-btn').textContent='▶ PLAY'; nowEl.textContent='-- / --'; document.querySelectorAll('.tok').forEach(e=>e.classList.remove('active'));});
 </script>
 </body>
 </html>
