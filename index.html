@@ -80,10 +80,8 @@ setInterval(()=>tEl.textContent=new Date().toLocaleTimeString('fr-FR'),1000);
 tEl.textContent=new Date().toLocaleTimeString('fr-FR');
 fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.029765&current=cloud_cover&timezone=auto').then(r=>r.json()).then(d=>{if(d?.current) cEl.textContent=d.current.cloud_cover+'%'}).catch(()=>{});
 </script>
-
 <script type="module">
   // TON CODE DU FOURNIL, EN VRAI STRUDEL
-  // Pour changer de groove : tu colles ton code de strudel.cc ici, entre les ` `
   const CODE = `
     stack(
       s("bd ~ bd ~ bd ~ bd ~"),
@@ -91,27 +89,31 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.02
       s("~ ~ sd ~ ~ ~ sd ~"),
       note("c2 ~ c2 ~ eb2 g2 f2 eb2").sound("sawtooth").lpf(600).gain(.6),
       note("c4 eb4 g4 eb4 ~ a4 g4 eb4").sound("triangle").gain(.5)
-    ).cpm(110/4)
+    ).cpm(27.5)
   `;
 
-  let repl = null;
-
-  async function init() {
-    if (repl) return repl;
-    const strudel = await import("https://esm.sh/@strudel/web@1.3.0");
-    repl = await strudel.repl({ getTime: () => performance.now() / 1000 });
-    return repl;
-  }
+  let ready = false;
 
   document.getElementById('play-btn').addEventListener('click', async () => {
-    const r = await init();
-    await r.evaluate(CODE);
-    r.start();
+    try {
+      // 1. On charge le vrai moteur Strudel
+      const strudel = await import("https://esm.sh/@strudel/web@1.3.0");
+      if (!ready) {
+        strudel.initStrudel();
+        ready = true;
+      }
+      // 2. On joue TON code
+      strudel.evaluate(CODE);
+    } catch (e) {
+      console.log("ERREUR STRUDEL :", e);
+      alert("Erreur Strudel, regarde la console : " + e.message);
+    }
   });
 
-  document.getElementById('stop-btn').addEventListener('click', () => {
-    if (!repl) return;
-    repl.stop();
+  document.getElementById('stop-btn').addEventListener('click', async () => {
+    if (!ready) return;
+    const strudel = await import("https://esm.sh/@strudel/web@1.3.0");
+    strudel.hush();
   });
 </script>
 </body>
