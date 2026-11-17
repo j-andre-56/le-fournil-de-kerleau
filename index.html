@@ -11,10 +11,6 @@
 *{box-sizing:border-box}
 body{margin:0;background:#F2E8CF;color:#000;font-family:'Source Code Pro',monospace}
 .header-fixed{position:fixed;top:0;left:0;right:0;z-index:20}
-.marquee{background:#000;color:#F2E8CF;font-size:11px;white-space:nowrap;overflow:hidden;padding:8px 0}
-.marquee a{color:#F2E8CF;text-decoration:none;display:block}
-.marquee-track{display:flex;width:max-content;animation:scroll 25s linear infinite}
-@keyframes scroll{to{transform:translateX(-50%)}}
 .logo-wrapper{display:flex;justify-content:center;padding:20px 30px}
 .logo-top{width:120px;height:120px;animation:sunRotate 4s linear infinite}
 @keyframes sunRotate{to{transform:rotate(360deg)}}
@@ -37,16 +33,6 @@ p{margin:0;font-size:14px;line-height:1.6}
 </head>
 <body>
 <header class="header-fixed">
-  <div class="marquee">
-    <a href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">
-      <div class="marquee-track">
-        <span>COMMANDE WHATSAPP >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span>
-        <span>COMMANDE WHATSAPP >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span>
-        <span>COMMANDE WHATSAPP >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span>
-        <span>COMMANDE WHATSAPP >>> FARINE LOCALE >>> PAIN AU LEVAIN >>> FOUR BOIS >>> FOUR SOLAIRE >>> CRAC'H >>>&nbsp;</span>
-      </div>
-    </a>
-  </div>
   <div class="logo-wrapper"><img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau"></div>
 </header>
 <main class="container">
