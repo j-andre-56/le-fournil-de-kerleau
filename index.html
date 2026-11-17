@@ -25,13 +25,14 @@ h2{width:100%;margin:50px 0 12px;padding-top:12px;border-top:1px solid #000;font
 p,.horaire,.pains{max-width:400px}
 p{margin:0;font-size:14px;line-height:1.6}
 .horaire{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #000;font-size:14px}
-.btn{display:inline-block;margin-top:50px;padding:12px 24px;background:#000;color:#F2E8CF;text-decoration:none;font-size:14px}
 .pains{display:flex;flex-direction:column;gap:30px}
 .pain-title{font-size:14px;font-weight:600}
 .pain-desc{margin-top:8px;font-size:13px;line-height:1.5}
-.floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right}
+.floating-stack{position:fixed;bottom:20px;right:20px;width:200px;display:flex;flex-direction:column;gap:10px;z-index:30}
+.floating-data{padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right}
 .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF}
 .fd-line{display:flex;justify-content:space-between}
+.btn-wa-float{display:block;text-align:center;padding:12px;background:#000;color:#F2E8CF;text-decoration:none;font-size:12px;border:1px solid #000}
 </style>
 </head>
 <body>
@@ -57,17 +58,21 @@ p{margin:0;font-size:14px;line-height:1.6}
   <div class="horaire"><span>Vendredi</span><span>Au fournil 17h - 19h</span></div>
   <h2>INFORMATIONS COMPLEMENTAIRES ?</h2>
   <p>Julien ANDRE<br>2, Kerleau<br>56950 Crac'h</p>
-  <a class="btn" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">02 97 00 00 00 — Pré-commande Whatsapp</a>
 
 <h2>PHILOSOPHIE D'ENTREPRISE</h2>
   <p>Nous pensons que le monde est complexe et qu'il ne faut pas tomber dans les caricatures. Notre priorité, c'est l'accessibilité et la résistance de notre modèle face aux multiples crises.<br><br>Nous sommes conscients que notre modèle est imparfait et, dans une certaine mesure, incohérent. Nous avançons lentement, avec ce que nous croyons comprendre sur le moment. Et ce n'est pas chose aisée : nos biais cognitifs nous jouent parfois des tours.<br><br>Nous pensons qu'un modèle qui ne repose que sur une seule source est fragile. En cas de sécheresse, de crise ou de pénurie, il prend le risque de s'effondrer. Nous sécurisons nos approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>Toutefois, nous sommes très exigeants sur notre savoir-faire : process, tour de main, hygiène, connaissance technologique... Beaucoup de néo-boulangers travaillent de très bons produits, mais massacrent le savoir-faire. Or de bonnes matières premières ne font pas tout.</p>
 </main>
-<div class="floating-data">
-  <div class="title">LIVE DATA</div>
-  <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
-  <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
-  <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
+
+<div class="floating-stack">
+  <div class="floating-data">
+    <div class="title">LIVE DATA</div>
+    <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
+    <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
+    <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
+  </div>
+  <a class="btn-wa-float" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">COMMANDE WHATSAPP >>></a>
 </div>
+
 <script>
 const tEl=document.getElementById('f-time'),cEl=document.getElementById('f-cloud');
 setInterval(()=>tEl.textContent=new Date().toLocaleTimeString('fr-FR'),1000);
