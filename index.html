@@ -32,6 +32,9 @@ p{margin:0;font-size:14px;line-height:1.6}
 .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right}
 .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF}
 .fd-line{display:flex;justify-content:space-between}
+.notes-live{display:flex;gap:4px;margin-top:10px}
+.note-dot{flex:1;text-align:center;padding:8px 2px;background:#111;color:#F2E8CF;font-size:11px;border:1px solid #333}
+.note-dot.active{background:#F2E8CF;color:#000;font-weight:700}
 </style>
 </head>
 <body>
@@ -65,6 +68,13 @@ p{margin:0;font-size:14px;line-height:1.6}
     <button id="stop-btn" style="flex:1; background:transparent; color:#000; border:1px solid #000; padding:14px; font-family:inherit; font-size:14px; cursor:pointer;">■ STOP</button>
   </div>
 
+  <!-- PETIT PAVÉ NOTES JOUÉES -->
+  <div style="margin-top:12px; background:#000; color:#F2E8CF; padding:12px;">
+    <div style="display:flex; justify-content:space-between; font-size:11px; opacity:0.8;"><span>NOW PLAYING</span><span id="notes-now">-- / --</span></div>
+    <div id="notes-live" class="notes-live"></div>
+    <div style="font-size:11px; margin-top:8px; opacity:0.8;">BASSE / MÉLODIE — C2 = levain, C4 = soleil</div>
+  </div>
+
 <h2>PHILOSOPHIE D'ENTREPRISE</h2>
   <p>Nous pensons que le monde est complexe et qu'il ne faut pas tomber dans les caricatures. Notre priorité, c'est l'accessibilité et la résistance de notre modèle face aux multiples crises.<br><br>Nous sommes conscients que notre modèle est imparfait et, dans une certaine mesure, incohérent. Nous avançons lentement, avec ce que nous croyons comprendre sur le moment. Et ce n'est pas chose aisée : nos biais cognitifs nous jouent parfois des tours.<br><br>Nous pensons qu'un modèle qui ne repose que sur une seule source est fragile. En cas de sécheresse, de crise ou de pénurie, il prend le risque de s'effondrer. Nous sécurisons nos approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>Toutefois, nous sommes très exigeants sur notre savoir-faire : process, tour de main, hygiène, connaissance technologique... Beaucoup de néo-boulangers travaillent de très bons produits, mais massacrent le savoir-faire. Or de bonnes matières premières ne suffisent pas sans la maîtrise du métier.</p>
 </main>
@@ -82,23 +92,34 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.02
 </script>
 <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.js"></script>
 <script>
-// TON CODE STRUDEL EST ICI, CACHÉ - LE VISITEUR NE VOIT QUE PLAY / STOP
-// setcpm(110/4)
-// stack(
-//   s("bd ~ bd ~ bd ~ bd ~"),
-//   s("~ hh ~ hh ~ hh ~ hh"),
-//   s("~ ~ sd ~ ~ ~ sd ~"),
-//   note("c2 ~ c2 ~ eb2 ~ g2 ~ f2 ~ eb2 ~"),
-//   note("c4 eb4 g4 eb4 ~ a4 g4 eb4")
-// )
 const playBtn = document.getElementById('play-btn');
 const stopBtn = document.getElementById('stop-btn');
+const notesLive = document.getElementById('notes-live');
+const notesNow = document.getElementById('notes-now');
 let started = false;
+
+const bassNotes = ["C2", null, "C2", null, "Eb2", null, "G2", null, "F2", null, "Eb2", null];
+const leadNotes = ["C4", "Eb4", "G4", "Eb4", null, "A4", "G4", "Eb4"];
+
+// On construit le pavé : 8 cases = 8 temps
+leadNotes.forEach((n, i) => {
+  const d = document.createElement('div');
+  d.className = 'note-dot';
+  d.id = 'dot-' + i;
+  d.textContent = n || '·';
+  notesLive.appendChild(d);
+});
+
+function updateNotes(b) {
+  document.querySelectorAll('.note-dot').forEach((el, i) => el.classList.toggle('active', i === b));
+  const bass = bassNotes[b*2] || '·';
+  const lead = leadNotes[b] || '·';
+  notesNow.textContent = bass + ' / ' + lead;
+}
 
 async function initGroove() {
   await Tone.start();
   Tone.getTransport().bpm.value = 110;
-
   const kick = new Tone.MembraneSynth({ pitchDecay: 0.02, octaves: 6, envelope: { attack: 0.001, decay: 0.4, sustain: 0.01, release: 0.4 } }).toDestination();
   const hat = new Tone.NoiseSynth({ noise: { type: 'white' }, envelope: { attack: 0.001, decay: 0.05, sustain: 0 } }).toDestination();
   hat.volume.value = -18;
@@ -108,10 +129,6 @@ async function initGroove() {
   bass.volume.value = -8;
   const lead = new Tone.PolySynth(Tone.Synth, { oscillator: { type: 'triangle' }, envelope: { attack: 0.01, decay: 0.2, sustain: 0.2, release: 0.3 } }).toDestination();
   lead.volume.value = -12;
-
-  const bassNotes = ["C2", null, "C2", null, "Eb2", null, "G2", null, "F2", null, "Eb2", null];
-  const leadNotes = ["C4", "Eb4", "G4", "Eb4", null, "A4", "G4", "Eb4"];
-
   let step = 0;
   Tone.getTransport().scheduleRepeat((time) => {
     const i = step % 16;
@@ -119,8 +136,9 @@ async function initGroove() {
     if (i % 4 === 0) kick.triggerAttackRelease("C1", "8n", time);
     if (i % 4 === 2) hat.triggerAttackRelease("16n", time);
     if (i === 4 || i === 12) snare.triggerAttackRelease("16n", time);
-    if (i % 2 === 0 && bassNotes[b]) bass.triggerAttackRelease(bassNotes[b], "8n", time);
+    if (i % 2 === 0 && bassNotes[b*2]) bass.triggerAttackRelease(bassNotes[b*2], "8n", time);
     if (i % 2 === 0 && leadNotes[b]) lead.triggerAttackRelease(leadNotes[b], "8n", time);
+    Tone.getDraw().schedule(() => updateNotes(b), time);
     step++;
   }, "16n");
   started = true;
@@ -135,6 +153,8 @@ playBtn.addEventListener('click', async () => {
 stopBtn.addEventListener('click', () => {
   Tone.getTransport().stop();
   playBtn.textContent = '▶ PLAY';
+  notesNow.textContent = '-- / --';
+  document.querySelectorAll('.note-dot').forEach(el => el.classList.remove('active'));
 });
 </script>
 </body>
