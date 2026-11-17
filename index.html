@@ -32,9 +32,12 @@ p{margin:0;font-size:14px;line-height:1.6}
 .floating-data{position:fixed;bottom:20px;right:20px;width:200px;padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right}
 .floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF}
 .fd-line{display:flex;justify-content:space-between}
-.notes-live{display:flex;gap:4px;margin-top:10px}
-.note-dot{flex:1;text-align:center;padding:8px 2px;background:#111;color:#F2E8CF;font-size:11px;border:1px solid #333}
-.note-dot.active{background:#F2E8CF;color:#000;font-weight:700}
+/* PAVÉ STRUDEL */
+.strudel-line{display:flex;flex-wrap:wrap;gap:0;padding:3px 0;font-size:12px;line-height:1.8;white-space:pre}
+.strudel-prefix{color:#8a8a8a;margin-right:6px}
+.tok{padding:1px 4px;border-radius:2px;color:#F2E8CF}
+.tok.active{background:#F2E8CF;color:#000;font-weight:700}
+.tok.rest{opacity:0.35}
 </style>
 </head>
 <body>
@@ -68,11 +71,10 @@ p{margin:0;font-size:14px;line-height:1.6}
     <button id="stop-btn" style="flex:1; background:transparent; color:#000; border:1px solid #000; padding:14px; font-family:inherit; font-size:14px; cursor:pointer;">■ STOP</button>
   </div>
 
-  <!-- PETIT PAVÉ NOTES JOUÉES -->
-  <div style="margin-top:12px; background:#000; color:#F2E8CF; padding:12px;">
-    <div style="display:flex; justify-content:space-between; font-size:11px; opacity:0.8;"><span>NOW PLAYING</span><span id="notes-now">-- / --</span></div>
-    <div id="notes-live" class="notes-live"></div>
-    <div style="font-size:11px; margin-top:8px; opacity:0.8;">BASSE / MÉLODIE — C2 = levain, C4 = soleil</div>
+  <!-- PAVÉ STRUDEL - NOTES COMME DANS STRUDEL -->
+  <div style="margin-top:12px; background:#000; color:#F2E8CF; padding:14px;">
+    <div style="display:flex; justify-content:space-between; font-size:11px; opacity:0.7; margin-bottom:6px;"><span>strudel.cc — live</span><span id="notes-now">-- / --</span></div>
+    <div id="strudel-pave"></div>
   </div>
 
 <h2>PHILOSOPHIE D'ENTREPRISE</h2>
@@ -94,28 +96,56 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.02
 <script>
 const playBtn = document.getElementById('play-btn');
 const stopBtn = document.getElementById('stop-btn');
-const notesLive = document.getElementById('notes-live');
+const pave = document.getElementById('strudel-pave');
 const notesNow = document.getElementById('notes-now');
 let started = false;
 
-const bassNotes = ["C2", null, "C2", null, "Eb2", null, "G2", null, "F2", null, "Eb2", null];
-const leadNotes = ["C4", "Eb4", "G4", "Eb4", null, "A4", "G4", "Eb4"];
+// PATTERNS EXACTEMENT COMME DANS STRUDEL
+const patterns = [
+  { prefix: 's("', suffix: '")', tokens: ["bd","~","bd","~","bd","~","bd","~"] },
+  { prefix: 's("', suffix: '")', tokens: ["~","hh","~","hh","~","hh","~","hh"] },
+  { prefix: 's("', suffix: '")', tokens: ["~","~","sd","~","~","~","sd","~"] },
+  { prefix: 'note("', suffix: '")', tokens: ["c2","~","c2","~","eb2","g2","f2","eb2"] },
+  { prefix: 'note("', suffix: '")', tokens: ["c4","eb4","g4","eb4","~","a4","g4","eb4"] },
+];
 
-// On construit le pavé : 8 cases = 8 temps
-leadNotes.forEach((n, i) => {
-  const d = document.createElement('div');
-  d.className = 'note-dot';
-  d.id = 'dot-' + i;
-  d.textContent = n || '·';
-  notesLive.appendChild(d);
+// On construit le pavé Strudel
+patterns.forEach((line, li) => {
+  const row = document.createElement('div');
+  row.className = 'strudel-line';
+  const pre = document.createElement('span');
+  pre.className = 'strudel-prefix';
+  pre.textContent = line.prefix;
+  row.appendChild(pre);
+  line.tokens.forEach((tok, ti) => {
+    const s = document.createElement('span');
+    s.className = 'tok' + (tok === '~' ? ' rest' : '');
+    s.id = `tok-${li}-${ti}`;
+    s.textContent = tok;
+    row.appendChild(s);
+    const space = document.createElement('span');
+    space.textContent = ' ';
+    row.appendChild(space);
+  });
+  const suf = document.createElement('span');
+  suf.className = 'strudel-prefix';
+  suf.textContent = line.suffix;
+  row.appendChild(suf);
+  pave.appendChild(row);
 });
 
 function updateNotes(b) {
-  document.querySelectorAll('.note-dot').forEach((el, i) => el.classList.toggle('active', i === b));
-  const bass = bassNotes[b*2] || '·';
-  const lead = leadNotes[b] || '·';
-  notesNow.textContent = bass + ' / ' + lead;
+  patterns.forEach((line, li) => {
+    line.tokens.forEach((_, ti) => {
+      const el = document.getElementById(`tok-${li}-${ti}`);
+      if (el) el.classList.toggle('active', ti === b);
+    });
+  });
+  notesNow.textContent = patterns[3].tokens[b] + ' / ' + patterns[4].tokens[b];
 }
+
+const bassNotes = ["C2", null, "C2", null, "Eb2", "G2", "F2", "Eb2"];
+const leadNotes = ["C4", "Eb4", "G4", "Eb4", null, "A4", "G4", "Eb4"];
 
 async function initGroove() {
   await Tone.start();
@@ -136,7 +166,7 @@ async function initGroove() {
     if (i % 4 === 0) kick.triggerAttackRelease("C1", "8n", time);
     if (i % 4 === 2) hat.triggerAttackRelease("16n", time);
     if (i === 4 || i === 12) snare.triggerAttackRelease("16n", time);
-    if (i % 2 === 0 && bassNotes[b*2]) bass.triggerAttackRelease(bassNotes[b*2], "8n", time);
+    if (i % 2 === 0 && bassNotes[b]) bass.triggerAttackRelease(bassNotes[b], "8n", time);
     if (i % 2 === 0 && leadNotes[b]) lead.triggerAttackRelease(leadNotes[b], "8n", time);
     Tone.getDraw().schedule(() => updateNotes(b), time);
     step++;
@@ -149,12 +179,11 @@ playBtn.addEventListener('click', async () => {
   Tone.getTransport().start();
   playBtn.textContent = '♪ ÇA JOUE...';
 });
-
 stopBtn.addEventListener('click', () => {
   Tone.getTransport().stop();
   playBtn.textContent = '▶ PLAY';
   notesNow.textContent = '-- / --';
-  document.querySelectorAll('.note-dot').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tok').forEach(el => el.classList.remove('active'));
 });
 </script>
 </body>
