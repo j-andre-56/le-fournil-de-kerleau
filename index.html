@@ -1,76 +1,266 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Fournil de Kerleau - Cuisson Bois Soleil Crac'h</title>
-<meta name="description" content="Le Fournil de Kerleau à Crac'h (56950) - Pain au levain, farine locale T80 sur meule de pierre, cuisson bois et four solaire. Retrait le vendredi au fournil.">
-<link rel="canonical" href="https://lefournildekerleau.fr/">
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box}
-body{margin:0;background:#F2E8CF;color:#000;font-family:'Source Code Pro',monospace}
-.header-fixed{position:fixed;top:0;left:0;right:0;z-index:20}
-.logo-wrapper{display:flex;justify-content:center;padding:20px 30px}
-.logo-top{width:120px;height:120px;animation:sunRotate 4s linear infinite}
-@keyframes sunRotate{to{transform:rotate(360deg)}}
-.container{max-width:550px;padding:170px 30px 220px}
-h1{margin:0 0 12px;font-size:14px;font-weight:700}
-.sub{font-size:14px}
-h2{width:100%;margin:50px 0 12px;padding-top:12px;border-top:1px solid #000;font-size:14px;font-weight:700}
-p,.horaire,.pains{max-width:400px}
-p{margin:0;font-size:14px;line-height:1.6}
-.horaire{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #000;font-size:14px}
-.pains{display:flex;flex-direction:column;gap:30px}
-.pain-title{font-size:14px;font-weight:600}
-.pain-desc{margin-top:8px;font-size:13px;line-height:1.5}
-.floating-stack{position:fixed;bottom:20px;right:20px;width:200px;display:flex;flex-direction:column;gap:10px;z-index:30}
-.floating-data{padding:12px;background:#000;color:#F2E8CF;font-size:11px;line-height:1.6;text-align:right}
-.floating-data .title{margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #F2E8CF}
-.fd-line{display:flex;justify-content:space-between}
-.btn-wa-float{display:block;overflow:hidden;white-space:nowrap;padding:12px 0;background:#000;color:#F2E8CF;text-decoration:none;font-size:12px;border:1px solid #000}
-.wa-track{display:flex;width:max-content;animation:waScroll 8s linear infinite}
-@keyframes waScroll{to{transform:translateX(-50%)}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== SEO / ONGLET NAVIGATEUR ===== -->
+  <title>Le Fournil de Kerleau - Cuisson Bois Soleil Crac'h</title>
+  <meta name="description" content="Le Fournil de Kerleau à Crac'h (56950) - Pain au levain, farine locale T80 sur meule de pierre, cuisson bois et four solaire. Retrait le vendredi au fournil.">
+  <link rel="canonical" href="https://lefournildekerleau.fr/">
+
+  <!-- ===== POLICE ===== -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #F2E8CF;
+      color: #000;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    /* ===== HEADER : LOGO FIXE EN HAUT ===== */
+    .header-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 20px 30px;
+    }
+
+    .logo-top {
+      width: 120px;
+      height: 120px;
+      animation: sunRotate 4s linear infinite; /* Rotation du soleil */
+    }
+
+    @keyframes sunRotate {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== CONTENU PRINCIPAL ===== */
+    .container {
+      max-width: 550px;
+      padding: 170px 30px 220px; /* 170 en haut pour passer sous le logo, 220 en bas pour passer au-dessus du bloc flottant */
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .sub { font-size: 14px; }
+
+    /* Titres de sections : PRODUCTION / HORAIRES / DÉMARCHE / INFOS */
+    h2 {
+      width: 100%;
+      margin: 50px 0 12px;
+      padding-top: 12px;
+      border-top: 1px solid #000;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    p, .horaire, .pains { max-width: 400px; }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Ligne horaires : Vendredi / Au fournil... */
+    .horaire {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed #000;
+      font-size: 14px;
+    }
+
+    /* Liste des pains */
+    .pains {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .pain-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .pain-desc {
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* ===== BLOC FLOTTANT BAS DROITE ===== */
+    .floating-stack {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 30;
+    }
+
+    /* Bloc noir LIVE DATA */
+    .floating-data {
+      padding: 12px;
+      background: #000;
+      color: #F2E8CF;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .floating-data .title {
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #F2E8CF;
+    }
+
+    .fd-line {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Bouton WhatsApp défilant */
+    .btn-wa-float {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 12px 0;
+      background: #000;
+      color: #F2E8CF;
+      text-decoration: none;
+      font-size: 12px;
+      border: 1px solid #000;
+    }
+
+    .wa-track {
+      display: flex;
+      width: max-content;
+      animation: waScroll 8s linear infinite;
+    }
+
+    @keyframes waScroll {
+      to { transform: translateX(-50%); }
+    }
+  </style>
 </head>
 <body>
-<header class="header-fixed">
-  <div class="logo-wrapper"><img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau"></div>
-</header>
-<main class="container">
-  <h1>LE FOURNIL DE KERLEAU</h1>
-  <div class="sub">Cuisson Bois / Soleil</div>
-  <h2>PRODUCTION BOULANGÈRE</h2>
-  <div class="pains"><div><div class="pain-title">01 / Quotidien</div><div class="pain-desc">T80 sur meule de pierre, Levain, Sel de Guérande, 75% hydra.<br>Cuisson bois<br>2€50/Kg</div></div></div>
-  <h2>HORAIRES ET POINT RETRAIT</h2>
-  <div class="horaire"><span>Vendredi</span><span>Au fournil 17h - 19h</span></div>
-<h2>NOTRE DÉMARCHE</h2>
-  <p>Le monde est complexe et nous ne voulons pas tomber dans les caricatures. Nos priorités sont l'accessibilité et la résistance de notre modèle quand nos systèmes se grippent.<br><br>Notre fonctionnement est perfectible et il peut même paraître incohérent pour certains. Nous en sommes conscients. Mais nous choisissons d'avancer lentement, là où tout nous pousse à aller plus vite.<br><br>Nous ne voyons pas les choses en noir ou blanc. Si une technologie nous semble nécessaire, qu'elle soit high-tech ou low-tech, nous l'utiliserons.<br><br>Nous pensons qu'un modèle qui ne repose que sur une seule source est fragile. En cas de sécheresse, de crise ou de pénurie, il prend le risque de s'effondrer. Nous sécurisons nos approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>Toutefois, nous sommes exigeants. Travailler de bons produits ne suffit pas. Sans un bon tour de main et des connaissances technologiques solides, le produit est raté. La compréhension des processus de fermentation est le travail de toute une vie 😉</p>
 
-  <h2>INFORMATIONS COMPLÉMENTAIRES ?</h2>
-  <p>Julien ANDRE<br>2, Kerleau<br>56950 Crac'h</p>
-</main>
-
-<div class="floating-stack">
-  <div class="floating-data">
-    <div class="title">LIVE DATA</div>
-    <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
-    <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
-    <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
-  </div>
-  <a class="btn-wa-float" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">
-    <div class="wa-track">
-      <span>COMMANDE WHATSAPP >>> COMMANDE WHATSAPP >>>&nbsp;</span>
-      <span>COMMANDE WHATSAPP >>> COMMANDE WHATSAPP >>>&nbsp;</span>
+  <!-- ===== HEADER : LOGO ===== -->
+  <header class="header-fixed">
+    <div class="logo-wrapper">
+      <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau">
     </div>
-  </a>
-</div>
+  </header>
 
-<script>
-const tEl=document.getElementById('f-time'),cEl=document.getElementById('f-cloud');
-setInterval(()=>tEl.textContent=new Date().toLocaleTimeString('fr-FR'),1000);
-tEl.textContent=new Date().toLocaleTimeString('fr-FR');
-fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.029765&current=cloud_cover&timezone=auto').then(r=>r.json()).then(d=>{if(d?.current) cEl.textContent=d.current.cloud_cover+'%'}).catch(()=>{});
-</script>
+  <!-- ===== CONTENU DE LA PAGE ===== -->
+  <main class="container">
+
+    <!-- TITRE + SOUS-TITRE -->
+    <h1>LE FOURNIL DE KERLEAU</h1>
+    <div class="sub">Cuisson Bois / Soleil</div>
+
+    <!-- ===== SECTION : PAINS ===== -->
+    <h2>PRODUCTION BOULANGÈRE</h2>
+    <div class="pains">
+      <!-- PAIN 01 : pour ajouter un pain, copie tout ce bloc <div>...</div> -->
+      <div>
+        <div class="pain-title">01 / Quotidien</div>
+        <div class="pain-desc">
+          T80 sur meule de pierre, Levain, Sel de Guérande, 75% hydra.<br>
+          Cuisson bois<br>
+          2€50/Kg
+        </div>
+      </div>
+      <!-- FIN PAIN 01 -->
+    </div>
+
+    <!-- ===== SECTION : HORAIRES ===== -->
+    <h2>HORAIRES ET POINT RETRAIT</h2>
+    <div class="horaire">
+      <span>Vendredi</span>
+      <span>Au fournil 17h - 19h</span>
+    </div>
+
+    <!-- ===== SECTION : NOTRE DÉMARCHE ===== -->
+    <h2>NOTRE DÉMARCHE</h2>
+    <p>
+      Le monde est complexe et nous ne voulons pas tomber dans les caricatures. Nos priorités sont l'accessibilité et la résistance de notre modèle quand nos systèmes se grippent.<br><br>
+      Notre fonctionnement est perfectible et il peut même paraître incohérent pour certains. Nous en sommes conscients. Mais nous choisissons d'avancer lentement, là où tout nous pousse à aller plus vite.<br><br>
+      Nous ne voyons pas les choses en noir ou blanc. Si une technologie nous semble nécessaire, qu'elle soit high-tech ou low-tech, nous l'utiliserons.<br><br>
+      Nous pensons qu'un modèle qui ne repose que sur une seule source est fragile. En cas de sécheresse, de crise ou de pénurie, il prend le risque de s'effondrer. Nous sécurisons nos approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>
+      Toutefois, nous sommes exigeants. Travailler de bons produits ne suffit pas. Sans un bon tour de main et des connaissances technologiques solides, le produit est raté. La compréhension des processus de fermentation est le travail de toute une vie 😉
+    </p>
+
+    <!-- ===== SECTION : CONTACT / ADRESSE ===== -->
+    <h2>INFORMATIONS COMPLÉMENTAIRES ?</h2>
+    <p>
+      Julien ANDRE<br>
+      2, Kerleau<br>
+      56950 Crac'h
+    </p>
+  </main>
+
+  <!-- ===== BLOC FLOTTANT : LIVE DATA + WHATSAPP ===== -->
+  <div class="floating-stack">
+
+    <!-- LIVE DATA : heure + nuages + coordonnées -->
+    <div class="floating-data">
+      <div class="title">LIVE DATA</div>
+      <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
+      <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
+      <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
+    </div>
+
+    <!-- BOUTON WHATSAPP : change le numéro dans le lien href="https://wa.me/... " -->
+    <a class="btn-wa-float" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">
+      <div class="wa-track">
+        <span>COMMANDE WHATSAPP >>> COMMANDE WHATSAPP >>>&nbsp;</span>
+        <span>COMMANDE WHATSAPP >>> COMMANDE WHATSAPP >>>&nbsp;</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ===== JAVASCRIPT : HEURE + MÉTÉO ===== -->
+  <script>
+    // Récupère les éléments HEURE et NUAGES
+    const tEl = document.getElementById('f-time');
+    const cEl = document.getElementById('f-cloud');
+
+    // Met à jour l'heure toutes les secondes
+    function updateTime() {
+      tEl.textContent = new Date().toLocaleTimeString('fr-FR');
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Récupère le % de nuages à Crac'h (Open-Meteo)
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.029765&current=cloud_cover&timezone=auto')
+      .then(r => r.json())
+      .then(d => {
+        if (d?.current) cEl.textContent = d.current.cloud_cover + '%';
+      })
+      .catch(() => {});
+  </script>
+
 </body>
 </html>
