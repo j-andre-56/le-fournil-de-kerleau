@@ -253,62 +253,7 @@
     updateCloud();
     setInterval(updateCloud, 600000);
 
-    function getNextFriday() {
-      const d = new Date();
-      let add = (5 - d.getDay() + 7) % 7;
-      if (add === 0 && d.getHours() >= 17) add = 7;
-      d.setDate(d.getDate() + add);
-      d.setHours(0, 0, 0, 0);
-      return d;
-    }
-
-    function formatDateLocal(d) {
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, '0');
-      const day = String(d.getDate()).padStart(2, '0');
-      return `${y}-${m}-${day}`;
-    }
-
-    async function updateProbaSolaire() {
-      const el = document.getElementById('proba-solaire');
-      const majEl = document.getElementById('maj-proba');
-      const dateEl = document.getElementById('date-fournee');
-      if (!el) return;
-
-      const friday = getNextFriday();
-      const dateStr = formatDateLocal(friday);
-      const label = friday.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
-      if (dateEl) dateEl.textContent = label + ' 14h - 17h';
-
-      try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&hourly=cloud_cover&timezone=Europe%2FParis&start_date=${dateStr}&end_date=${dateStr}`;
-        const res = await fetch(url);
-        const data = await res.json();
-
-        let bonnes = 0;
-        let total = 0;
-
-        data.hourly.time.forEach((t, i) => {
-          const h = Number(t.slice(11, 13));
-          if (h >= 14 && h <= 17) {
-            total++;
-            if (data.hourly.cloud_cover[i] < 30) bonnes++;
-          }
-        });
-
-        const proba = total > 0 ? Math.round((bonnes / total) * 100) : 0;
-        el.textContent = proba + '%';
-
-        const now = new Date();
-        if (majEl) {
-          majEl.textContent = `Calculé sur le modèle du ${now.toLocaleDateString('fr-FR')} à ${now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - Créneau 14h-17h, nuages < 30%`;
-        }
-      } catch (e) {
-        el.textContent = '--%';
-        if (majEl) majEl.textContent = 'Modèle indisponible pour le moment';
-      }
-    }
-    updateProbaSolaire();
+    
   </script>
 
 </body>
