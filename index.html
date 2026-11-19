@@ -4,16 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO -->
   <title>Le Fournil de Kerleau - Cuisson Bois Soleil Crac'h</title>
   <meta name="description" content="Le Fournil de Kerleau à Crac'h (56950) - Pain au levain, farine locale T80 sur meule de pierre, cuisson bois et four solaire. Retrait le vendredi au fournil.">
   <link rel="canonical" href="https://lefournildekerleau.fr/">
 
-  <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ---------- Variables ---------- */
     :root {
       --bg: #F2E8CF;
       --ink: #000;
@@ -24,7 +21,6 @@
       --gap: 30px;
     }
 
-    /* ---------- Base ---------- */
     * { box-sizing: border-box; }
 
     body {
@@ -36,7 +32,6 @@
       line-height: 1.6;
     }
 
-    /* ---------- Layout ---------- */
     .container {
       max-width: 550px;
       padding: 170px 30px 220px;
@@ -44,50 +39,44 @@
 
     p { max-width: 400px; margin: 0; }
 
-    /* ---------- Titres ---------- */
     h1, h2 { font-size: var(--text); font-weight: 700; }
-
     h1 { margin: 0 0 12px; }
-
     h2 {
       margin: 50px 0 12px;
       padding-top: 12px;
       border-top: 1px solid var(--ink);
     }
 
-    /* ---------- Header : logo fixe ---------- */
+    /* Logo fixe */
     .header-fixed {
       position: fixed;
       inset: 0 0 auto 0;
       z-index: 20;
     }
-
     .logo-wrapper {
       display: flex;
       justify-content: center;
       padding: 20px 30px;
     }
-
     .logo-top {
       width: 120px;
       height: 120px;
       animation: sunRotate 4s linear infinite;
     }
-
     @keyframes sunRotate { to { transform: rotate(360deg); } }
 
-    /* ---------- Pains ---------- */
+    /* Pains */
     .pains {
       display: flex;
       flex-direction: column;
       gap: var(--gap);
       max-width: 400px;
     }
-
     .pain-title { font-weight: 600; }
     .pain-desc { margin-top: 8px; font-size: var(--text-small); line-height: 1.5; }
+    .pain-meta { font-size: var(--text-mini); opacity: .7; }
 
-    /* ---------- Horaires ---------- */
+    /* Horaires */
     .horaire {
       display: flex;
       justify-content: space-between;
@@ -96,7 +85,7 @@
       border-bottom: 1px dashed var(--ink);
     }
 
-    /* ---------- Bloc flottant ---------- */
+    /* Flottant */
     .floating-stack {
       position: fixed;
       right: 20px;
@@ -107,7 +96,6 @@
       gap: 10px;
       width: 200px;
     }
-
     .floating-data {
       padding: 12px;
       background: var(--ink);
@@ -115,16 +103,14 @@
       font-size: var(--text-mini);
       text-align: right;
     }
-
     .floating-data .title {
       margin-bottom: 8px;
       padding-bottom: 6px;
       border-bottom: 1px solid var(--bg);
     }
-
     .fd-line { display: flex; justify-content: space-between; }
 
-    /* ---------- Bouton WhatsApp ---------- */
+    /* WhatsApp */
     .btn-wa-float {
       display: block;
       overflow: hidden;
@@ -136,63 +122,54 @@
       font-size: 12px;
       text-decoration: none;
     }
-
     .wa-track {
       display: flex;
       width: max-content;
       animation: waScroll 8s linear infinite;
     }
-
     @keyframes waScroll { to { transform: translateX(-50%); } }
   </style>
 </head>
 <body>
 
-  <!-- LOGO -->
   <header class="header-fixed">
     <div class="logo-wrapper">
       <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau">
     </div>
   </header>
 
-  <!-- CONTENU -->
   <main class="container">
 
     <h1>LE FOURNIL DE KERLEAU</h1>
     <p>Cuisson Bois / Soleil</p>
-<!-- ===== SECTION : PAINS ===== -->
-<h2>PRODUCTION BOULANGÈRE</h2>
-<div class="pains">
 
-  <!-- PAIN 01 -->
-  <div>
-    <div class="pain-title">01 / Quotidien</div>
-    <div class="pain-desc">
-      T80 sur meule de pierre, Levain, Sel de Guérande, 75% hydra.<br>
-      Cuisson bois<br>
-      2€50/Kg
-    </div>
-  </div>
-  <!-- FIN PAIN 01 -->
+    <section>
+      <h2>PRODUCTION BOULANGÈRE</h2>
+      <div class="pains">
 
-  <!-- PAIN 02 : PAIN SOLAIRE -->
-  <div>
-    <div class="pain-title">02 / Petit-épeautre solaire</div>
-    <div class="pain-desc">
-      Petit-épeautre, Levain, Sel de Guérande.<br>
-      Prochaine fournée : <span id="date-fournee">vendredi 14h - 17h</span><br>
-      <br>
-      Probabilité de cuisson solaire : <span id="proba-solaire">--%</span><br>
-      Pain garanti. Si le soleil n'est pas suffisant, cuisson au four à bois.<br>
-      <span style="font-size:11px; opacity:0.7;" id="maj-proba">Calcul en cours...</span>
-    </div>
-  </div>
-  <!-- FIN PAIN 02 -->
+        <div>
+          <div class="pain-title">01 / Quotidien</div>
+          <div class="pain-desc">
+            T80 sur meule de pierre, Levain, Sel de Guérande, 75% hydra.<br>
+            Cuisson bois<br>
+            2€50/Kg
+          </div>
+        </div>
 
-</div>
-   
+        <div>
+          <div class="pain-title">02 / Petit-épeautre solaire</div>
+          <div class="pain-desc">
+            Petit-épeautre, Levain, Sel de Guérande.<br>
+            Prochaine fournée : <span id="date-fournee">vendredi 14h - 17h</span><br><br>
+            Probabilité de cuisson solaire : <span id="proba-solaire">--%</span><br>
+            Pain garanti. Si le soleil n'est pas suffisant, cuisson au four à bois.<br>
+            <span class="pain-meta" id="maj-proba">Calcul en cours...</span>
+          </div>
+        </div>
 
-    <!-- HORAIRES -->
+      </div>
+    </section>
+
     <section>
       <h2>HORAIRES ET POINT RETRAIT</h2>
       <div class="horaire">
@@ -201,11 +178,10 @@
       </div>
     </section>
 
-    <!-- QUI SOMMES-NOUS ? -->
     <section>
       <h2>QUI SOMMES-NOUS ?</h2>
       <p>Le Fournil de Kerléau est une micro-structure, souple dans son fonctionnement et simple dans son organisation. Nous faisons du pains en petite quantité pour ceux qui sont près de nous.<br><br>
-        Notre monde est complexe et imprévisible. Nous devons sans cesse faire des arbitrages, propulsées par ce que l'on croit comprendre.  Nos priorités sont l'accessibilité de nos produits au plus grand nombre et la robustesse de notre modèle quand nos systèmes se grippent.<br><br>
+        Notre monde est complexe et imprévisible. Nous devons sans cesse faire des arbitrages, propulsées par ce que l'on croit comprendre. Nos priorités sont l'accessibilité de nos produits au plus grand nombre et la robustesse de notre modèle quand nos systèmes se grippent.<br><br>
         Notre fonctionnement est perfectible mais nous choisissons d'avancer lentement, là où tout nous pousse à aller toujours plus vite.<br><br>
         Nous ne voyons pas les choses en noir ou en blanc. Si une technologie nous semble nécessaire, qu'elle soit high-tech ou low-tech, nous l'utiliserons.<br><br>
         Nous pensons qu'un modèle qui ne repose que sur une seule source est fragile. En cas de sécheresse, de crise ou de pénurie, il prend le risque de s'effondrer. Nous sécurisons nos approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>
@@ -213,7 +189,6 @@
       </p>
     </section>
 
-    <!-- CONTACT -->
     <section>
       <h2>INFORMATIONS COMPLÉMENTAIRES</h2>
       <address style="font-style: normal;">
@@ -226,10 +201,7 @@
 
   </main>
 
-  <!-- FLOTTANT : WHATSAPP EN HAUT + LIVE DATA EN BAS -->
   <div class="floating-stack">
-
-    <!-- 1. WHATSAPP -->
     <a class="btn-wa-float" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">
       <div class="wa-track">
         <span>PRÉ-CO WHATSAPP | PRÉ-CO WHATSAPP |&nbsp;</span>
@@ -237,71 +209,100 @@
       </div>
     </a>
 
-    <!-- 2. LIVE DATA -->
     <div class="floating-data">
       <div class="title">LIVE DATA</div>
       <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
       <div class="fd-line"><span>NUAGES</span><span id="f-cloud">--%</span></div>
       <div class="fd-line"><span>COORD</span><span>47.651201N -3.029765W</span></div>
     </div>
-
   </div>
 
-  <!-- JS : HEURE + NUAGES -->
-// ===== PROBABILITÉ SOLAIRE - PETIT-ÉPEAUTRE =====
-// Règle : une heure est "bonne" si couverture nuageuse < 30%
-// Probabilité = nb heures bonnes / nb heures du créneau 14h-17h
-
-function getNextFriday() {
-  const d = new Date();
-  // 5 = vendredi. Si on est déjà vendredi après 17h, on prend le suivant
-  let add = (5 - d.getDay() + 7) % 7;
-  if (add === 0 && d.getHours() >= 17) add = 7;
-  d.setDate(d.getDate() + add);
-  return d;
-}
-
-async function updateProbaSolaire() {
-  const el = document.getElementById('proba-solaire');
-  const majEl = document.getElementById('maj-proba');
-  const dateEl = document.getElementById('date-fournee');
-  if (!el) return;
-
-  const friday = getNextFriday();
-  const dateStr = friday.toISOString().slice(0, 10); // YYYY-MM-DD
-  const label = friday.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
-  if (dateEl) dateEl.textContent = label + ' 14h - 17h';
-
-  try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=47.651201&longitude=-3.029765&hourly=cloud_cover&timezone=Europe%2FParis&start_date=${dateStr}&end_date=${dateStr}`;
-    const res = await fetch(url);
-    const data = await res.json();
-
-    // On prend les heures 14, 15, 16, 17
-    let bonnes = 0;
-    let total = 0;
-    data.hourly.time.forEach((t, i) => {
-      const h = parseInt(t.slice(11, 13), 10);
-      if (h >= 14 && h <= 17) {
-        total++;
-        if (data.hourly.cloud_cover[i] < 30) bonnes++;
-      }
-    });
-
-    const proba = total > 0 ? Math.round((bonnes / total) * 100) : 0;
-    el.textContent = proba + '%';
-
-    const now = new Date();
-    if (majEl) majEl.textContent = `Calculé sur le modèle de ${now.toLocaleDateString('fr-FR')} à ${now.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'})} - Créneau 14h-17h, nuages < 30%`;
-
-  } catch (e) {
-    el.textContent = '--%';
-    if (majEl) majEl.textContent = 'Modèle indisponible pour le moment';
-  }
-}
-
-updateProbaSolaire();
   <script>
+    const LAT = 47.651201;
+    const LON = -3.029765;
+
+    // Horloge
+    function tickClock() {
+      const el = document.getElementById('f-time');
+      if (el) el.textContent = new Date().toLocaleTimeString('fr-FR');
+    }
+    tickClock();
+    setInterval(tickClock, 1000);
+
+    // Nuages actuels
+    async function updateCloud() {
+      const el = document.getElementById('f-cloud');
+      if (!el) return;
+      try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=cloud_cover&timezone=Europe%2FParis`);
+        const data = await res.json();
+        el.textContent = data.current.cloud_cover + '%';
+      } catch (e) {
+        el.textContent = '--%';
+      }
+    }
+    updateCloud();
+    setInterval(updateCloud, 600000);
+
+    // Prochain vendredi
+    function getNextFriday() {
+      const d = new Date();
+      let add = (5 - d.getDay() + 7) % 7;
+      if (add === 0 && d.getHours() >= 17) add = 7;
+      d.setDate(d.getDate() + add);
+      d.setHours(0, 0, 0, 0);
+      return d;
+    }
+
+    function formatDateLocal(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    }
+
+    // Probabilité solaire : heures 14h-17h avec nuages < 30%
+    async function updateProbaSolaire() {
+      const el = document.getElementById('proba-solaire');
+      const majEl = document.getElementById('maj-proba');
+      const dateEl = document.getElementById('date-fournee');
+      if (!el) return;
+
+      const friday = getNextFriday();
+      const dateStr = formatDateLocal(friday);
+      const label = friday.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+      if (dateEl) dateEl.textContent = label + ' 14h - 17h';
+
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&hourly=cloud_cover&timezone=Europe%2FParis&start_date=${dateStr}&end_date=${dateStr}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        let bonnes = 0;
+        let total = 0;
+
+        data.hourly.time.forEach((t, i) => {
+          const h = Number(t.slice(11, 13));
+          if (h >= 14 && h <= 17) {
+            total++;
+            if (data.hourly.cloud_cover[i] < 30) bonnes++;
+          }
+        });
+
+        const proba = total > 0 ? Math.round((bonnes / total) * 100) : 0;
+        el.textContent = proba + '%';
+
+        const now = new Date();
+        if (majEl) {
+          majEl.textContent = `Calculé sur le modèle du ${now.toLocaleDateString('fr-FR')} à ${now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })} - Créneau 14h-17h, nuages < 30%`;
+        }
+      } catch (e) {
+        el.textContent = '--%';
+        if (majEl) majEl.textContent = 'Modèle indisponible pour le moment';
+      }
+    }
+    updateProbaSolaire();
+  </script>
 
 </body>
 </html>
