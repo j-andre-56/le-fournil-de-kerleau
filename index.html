@@ -15,8 +15,7 @@
       --bg: #F2E8CF;
       --ink: #000;
       --font: 'Source Code Pro', monospace;
-      --text: 14px;
-      --text-small: 13px;
+      --text: 13px;
       --text-mini: 11px;
       --gap: 30px;
     }
@@ -73,7 +72,7 @@
       max-width: 400px;
     }
     .pain-title { font-weight: 600; }
-    .pain-desc { margin-top: 8px; font-size: var(--text-small); line-height: 1.5; }
+    .pain-desc { margin-top: 8px; }
     .pain-meta { font-size: var(--text-mini); opacity: .7; }
 
     /* Horaires */
@@ -118,7 +117,6 @@
       padding: 12px 0;
       background: var(--ink);
       color: var(--bg);
-      border: 1px solid var(--ink);
       font-size: 12px;
       text-decoration: none;
     }
@@ -179,15 +177,15 @@
     </section>
 
     <section>
-  <h2>QUI SOMMES-NOUS ?</h2>
-  <p>
-    Le Fournil de Kerléau est une micro-structure qui a pour principal objectif de faire du pain à des prix accessibles sans compromettre sa qualité. Le second objectif est de rendre l'entreprise la plus robuste et agile face aux crises qui se multiplient. Notre monde est de plus en plus complexe et imprévisible.<br><br>
-    Je choisis d'avancer lentement, là où tout me pousse à aller plus vite.<br><br>
-    Je ne vois pas les choses en noir ou en blanc. Si une technologie me semble nécessaire, qu'elle soit high-tech ou low-tech, je l'utilise.<br><br>
-    Je pense aussi qu'un modèle qui ne repose que sur une seule source est fragile. En cas de problème, il prend le risque de se gripper. Je sécurise les approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>
-    Toutefois, je reste exigeant dans mon travail. Travailler de bons produits ne suffit pas. Sans un bon tour de main et des connaissances technologiques solides, le produit est raté. La compréhension des processus de fermentation est le travail de toute une vie.
-  </p>
-</section>
+      <h2>QUI SOMMES-NOUS ?</h2>
+      <p>
+        Le Fournil de Kerléau est une micro-structure qui a pour principal objectif de faire du pain à des prix accessibles sans compromettre sa qualité. Le second objectif est de rendre l'entreprise la plus robuste et agile face aux crises qui se multiplient. Notre monde est de plus en plus complexe et imprévisible.<br><br>
+        Je choisis d'avancer lentement, là où tout me pousse à aller plus vite.<br><br>
+        Je ne vois pas les choses en noir ou en blanc. Si une technologie me semble nécessaire, qu'elle soit high-tech ou low-tech, je l'utilise.<br><br>
+        Je pense aussi qu'un modèle qui ne repose que sur une seule source est fragile. En cas de problème, il prend le risque de se gripper. Je sécurise les approvisionnements en variant les sources : circuit court et structures conventionnelles plus importantes.<br><br>
+        Toutefois, je reste exigeant dans mon travail. Travailler de bons produits ne suffit pas. Sans un bon tour de main et des connaissances technologiques solides, le produit est raté. La compréhension des processus de fermentation est le travail de toute une vie.
+      </p>
+    </section>
 
     <section>
       <h2>INFORMATIONS COMPLÉMENTAIRES</h2>
@@ -221,7 +219,6 @@
     const LAT = 47.651201;
     const LON = -3.029765;
 
-    // Horloge
     function tickClock() {
       const el = document.getElementById('f-time');
       if (el) el.textContent = new Date().toLocaleTimeString('fr-FR');
@@ -229,7 +226,6 @@
     tickClock();
     setInterval(tickClock, 1000);
 
-    // Nuages actuels
     async function updateCloud() {
       const el = document.getElementById('f-cloud');
       if (!el) return;
@@ -244,7 +240,6 @@
     updateCloud();
     setInterval(updateCloud, 600000);
 
-    // Prochain vendredi
     function getNextFriday() {
       const d = new Date();
       let add = (5 - d.getDay() + 7) % 7;
@@ -261,7 +256,6 @@
       return `${y}-${m}-${day}`;
     }
 
-    // Probabilité solaire : heures 14h-17h avec nuages < 30%
     async function updateProbaSolaire() {
       const el = document.getElementById('proba-solaire');
       const majEl = document.getElementById('maj-proba');
