@@ -1,4 +1,4 @@
-w<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -36,15 +36,25 @@ w<!DOCTYPE html>
       padding: 170px 30px 220px;
     }
 
-    p { max-width: 400px; margin: 0; }
+    p {
+      max-width: 400px;
+      margin: 0;
+    }
 
-    h1, h2 { font-size: var(--text); font-weight: 700; }
+    h1, h2 {
+      font-size: var(--text);
+      font-weight: 700;
+    }
+
     h1 { margin: 0 0 12px; }
+
     h2 {
       margin: 50px 0 12px;
       padding-top: 12px;
       border-top: 1px solid var(--ink);
     }
+
+    address { font-style: normal; }
 
     /* Logo fixe */
     .header-fixed {
@@ -52,17 +62,22 @@ w<!DOCTYPE html>
       inset: 0 0 auto 0;
       z-index: 20;
     }
+
     .logo-wrapper {
       display: flex;
       justify-content: center;
       padding: 20px 30px;
     }
+
     .logo-top {
       width: 120px;
       height: 120px;
       animation: sunRotate 4s linear infinite;
     }
-    @keyframes sunRotate { to { transform: rotate(360deg); } }
+
+    @keyframes sunRotate {
+      to { transform: rotate(360deg); }
+    }
 
     /* Pains */
     .pains {
@@ -71,6 +86,7 @@ w<!DOCTYPE html>
       gap: var(--gap);
       max-width: 400px;
     }
+
     .pain-title { font-weight: 600; }
     .pain-desc { margin-top: 8px; }
     .pain-meta { font-size: var(--text-mini); opacity: .7; }
@@ -95,6 +111,7 @@ w<!DOCTYPE html>
       gap: 10px;
       width: 200px;
     }
+
     .floating-data {
       padding: 12px;
       background: var(--ink);
@@ -102,12 +119,17 @@ w<!DOCTYPE html>
       font-size: var(--text-mini);
       text-align: right;
     }
+
     .floating-data .title {
       margin-bottom: 8px;
       padding-bottom: 6px;
       border-bottom: 1px solid var(--bg);
     }
-    .fd-line { display: flex; justify-content: space-between; }
+
+    .fd-line {
+      display: flex;
+      justify-content: space-between;
+    }
 
     /* WhatsApp */
     .btn-wa-float {
@@ -120,12 +142,16 @@ w<!DOCTYPE html>
       font-size: 12px;
       text-decoration: none;
     }
+
     .wa-track {
       display: flex;
       width: max-content;
       animation: waScroll 8s linear infinite;
     }
-    @keyframes waScroll { to { transform: translateX(-50%); } }
+
+    @keyframes waScroll {
+      to { transform: translateX(-50%); }
+    }
   </style>
 </head>
 <body>
@@ -178,15 +204,16 @@ w<!DOCTYPE html>
 
     <section>
       <h2>EN SAVOIR +</h2>
-
-<p>Le Fournil de Kerléau est un petit fournil. Son but principal est de concevoir un bon pain, à un prix juste, pour les gens qui vivent autour.<br><br>
-Les prix bougent et les récoltes sont moins régulières. Au-delà de la fabrication du pain, le fournil cherche à s'adapter au mieux. Pour ça, on préfère faire comme le pain, prendre notre temps pour pousser.
-<br><br>Pour être moins fragile, on ne dépend pas d'une seule source. Pour le blé, on travaille avec du circuit court et des filières plus classiques. Pour l'énergie, c'est pareil : bois et solaire.</p>
+      <p>
+        Le Fournil de Kerléau est un petit fournil. Son but principal est de concevoir un bon pain, à un prix juste, pour les gens qui vivent autour.<br><br>
+        Les prix bougent et les récoltes sont moins régulières. Au-delà de la fabrication du pain, le fournil cherche à s'adapter au mieux. Pour ça, on préfère faire comme le pain, prendre notre temps pour pousser.<br><br>
+        Pour être moins fragile, on ne dépend pas d'une seule source. Pour le blé, on travaille avec du circuit court et des filières plus classiques. Pour l'énergie, c'est pareil : bois et solaire.
+      </p>
     </section>
 
     <section>
       <h2>INFORMATIONS COMPLÉMENTAIRES</h2>
-      <address style="font-style: normal;">
+      <address>
         Julien ANDRÉ<br>
         SAS Goûts et Couleurs<br>
         2, Kerleau<br>
