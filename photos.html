@@ -11,10 +11,12 @@
       margin: 0;
       background: #F2E8CF;
       font-family: 'Source Code Pro', monospace;
+      /* Espace en bas pour pas que le bouton fixe cache la dernière photo */
+      padding-bottom: 70px;
     }
 
-    /* ===== LIEN RETOUR ===== */
-    .back {
+    /* ===== RETOUR EN HAUT ===== */
+    .back-top {
       display: block;
       padding: 20px 12px;
       color: #000;
@@ -22,9 +24,19 @@
       text-transform: uppercase;
     }
 
+    /* ===== RETOUR EN BAS - TOUJOURS VISIBLE ===== */
     .back-bottom {
-      padding: 30px 12px 40px 12px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      padding: 20px 12px;
       background: #F2E8CF;
+      color: #000;
+      font-size: 14px;
+      text-transform: uppercase;
+      border-top: 1px solid #000;
     }
 
     /* ===== GRILLE PHOTOS ===== */
@@ -51,7 +63,7 @@
 <body>
 
   <!-- ===== RETOUR EN HAUT ===== -->
-  <a class="back" href="index.html"><<< RETOUR</a>
+  <a class="back-top" href="index.html"><<< RETOUR</a>
 
   <div class="grid">
     <img src="Assets/pain-quotidien.jpg" alt="">
@@ -62,8 +74,8 @@
     <img src="Assets/levain.jpg" alt="">
   </div>
 
-  <!-- ===== RETOUR EN BAS ===== -->
-  <a class="back back-bottom" href="index.html"><<< RETOUR</a>
+  <!-- ===== RETOUR EN BAS - FIXE ===== -->
+  <a class="back-bottom" href="index.html"><<< RETOUR</a>
 
 </body>
 </html>
