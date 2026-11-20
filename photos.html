@@ -3,48 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photos - Le Fournil de Kerleau</title>
+
+  <title>Photos - Le Fournil de Kerléau</title>
+  <meta name="description" content="Album photos - Le Fournil de Kerleau à Crac'h (56950)">
+  <link rel="canonical" href="https://lefournildekerleau.fr/photos.html">
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg: #F2E8CF;
+      --ink: #000;
+      --font: 'Source Code Pro', monospace;
+      --text: 13px;
+      --text-mini: 11px;
+      --gap: 30px;
+    }
+
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      background: #F2E8CF;
-      font-family: 'Source Code Pro', monospace;
-      /* Espace en bas pour pas que le bouton fixe cache la dernière photo */
-      padding-bottom: 70px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: var(--text);
+      line-height: 1.6;
     }
 
-    /* ===== RETOUR EN HAUT ===== */
-    .back-top {
-      display: block;
-      padding: 20px 12px;
-      color: #000;
-      font-size: 14px;
-      text-transform: uppercase;
+    .container {
+      max-width: 550px;
+      padding: 170px 30px 220px;
     }
 
-    /* ===== RETOUR EN BAS - TOUJOURS VISIBLE ===== */
-    .back-bottom {
+    p {
+      max-width: 400px;
+      margin: 0;
+    }
+
+    h1, h2 {
+      font-size: var(--text);
+      font-weight: 700;
+    }
+
+    h1 { margin: 0 0 12px; }
+
+    h2 {
+      margin: 50px 0 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--ink);
+    }
+
+    a {
+      color: var(--ink);
+    }
+
+    /* Logo fixe - identique à l'accueil */
+    .header-fixed {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: block;
-      padding: 20px 12px;
-      background: #F2E8CF;
-      color: #000;
-      font-size: 14px;
-      text-transform: uppercase;
-      border-top: 1px solid #000;
+      inset: 0 0 auto 0;
+      z-index: 20;
     }
 
-    /* ===== GRILLE PHOTOS ===== */
+    .logo-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 20px 30px;
+    }
+
+    .logo-top {
+      width: 120px;
+      height: 120px;
+      animation: sunRotate 4s linear infinite;
+    }
+
+    @keyframes sunRotate {
+      to { transform: rotate(360deg); }
+    }
+
+    /* RETOUR - même style que le lien album photos>>> */
+    .back {
+      display: block;
+      margin: 0 0 30px;
+    }
+
+    .back-bottom {
+      margin: 30px 0 0;
+    }
+
+    /* GRILLE PHOTOS - dans la même largeur que les textes (400px) */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      padding: 0 12px;
+      max-width: 400px;
     }
 
     .grid img {
@@ -54,28 +106,139 @@
       object-fit: cover;
     }
 
-    /* Sur téléphone : 1 colonne */
+    /* Flottant - identique à l'accueil */
+    .floating-stack {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 200px;
+    }
+
+    .floating-data {
+      padding: 12px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: var(--text-mini);
+      text-align: right;
+    }
+
+    .floating-data .title {
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--bg);
+    }
+
+    .fd-line {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* WhatsApp - identique à l'accueil */
+    .btn-wa-float {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 12px 0;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .wa-track {
+      display: flex;
+      width: max-content;
+      animation: waScroll 8s linear infinite;
+    }
+
+    @keyframes waScroll {
+      to { transform: translateX(-50%); }
+    }
+
+    /* Téléphone : 1 colonne */
     @media (max-width: 420px) {
-      .grid { grid-template-columns: 1fr; }
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== RETOUR EN HAUT ===== -->
-  <a class="back-top" href="index.html"><<< RETOUR</a>
+  <header class="header-fixed">
+    <div class="logo-wrapper">
+      <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Le Fournil de Kerleau">
+    </div>
+  </header>
 
-  <div class="grid">
-    <img src="Assets/pain-quotidien.jpg" alt="">
-    <img src="Assets/pain-special.jpg" alt="">
-    <img src="Assets/four-bois.jpg" alt="">
-    <img src="Assets/fournee.jpg" alt="">
-    <img src="Assets/faconnage.jpg" alt="">
-    <img src="Assets/levain.jpg" alt="">
+  <main class="container">
+
+    <a class="back" href="index.html"><<< RETOUR</a>
+
+    <h1>ALBUM PHOTOS</h1>
+    <p>Cuisson Bois / Soleil</p>
+
+    <section>
+      <h2>PHOTOS</h2>
+      <div class="grid">
+        <img src="Assets/pain-quotidien.jpg" alt="">
+        <img src="Assets/pain-special.jpg" alt="">
+        <img src="Assets/four-bois.jpg" alt="">
+        <img src="Assets/fournee.jpg" alt="">
+        <img src="Assets/faconnage.jpg" alt="">
+        <img src="Assets/levain.jpg" alt="">
+      </div>
+    </section>
+
+    <a class="back back-bottom" href="index.html"><<< RETOUR</a>
+
+  </main>
+
+  <div class="floating-stack">
+    <a class="btn-wa-float" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">
+      <div class="wa-track">
+        <span>PRÉ-COMMANDE WHATSAPP | PRÉ-COMMANDE WHATSAPP |&nbsp;</span>
+        <span>PRÉ-COMMANDE WHATSAPP | PRÉ-COMMANDE WHATSAPP |&nbsp;</span>
+      </div>
+    </a>
+
+    <div class="floating-data">
+      <div class="title">CUISSON SOLAIRE - DATA</div>
+      <div class="fd-line"><span>FOURNÉE DANS</span><span id="f-time">--:--:--</span></div>
+      <div class="fd-line"><span>PRÉVISIONS CIEL</span>☀️</div>
+      <div class="fd-line"><span>PROBA. CUISSON</span><span>70%</span></div>
+    </div>
   </div>
 
-  <!-- ===== RETOUR EN BAS - FIXE ===== -->
-  <a class="back-bottom" href="index.html"><<< RETOUR</a>
+  <script>
+    const LAT = 47.651201;
+    const LON = -3.029765;
+
+    function tickClock() {
+      const el = document.getElementById('f-time');
+      if (el) el.textContent = new Date().toLocaleTimeString('fr-FR');
+    }
+    tickClock();
+    setInterval(tickClock, 1000);
+
+    async function updateCloud() {
+      const el = document.getElementById('f-cloud');
+      if (!el) return;
+      try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=cloud_cover&timezone=Europe%2FParis`);
+        const data = await res.json();
+        el.textContent = data.current.cloud_cover + '%';
+      } catch (e) {
+        el.textContent = '--%';
+      }
+    }
+    updateCloud();
+    setInterval(updateCloud, 600000);
+  </script>
 
 </body>
 </html>
