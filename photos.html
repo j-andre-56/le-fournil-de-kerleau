@@ -36,24 +36,6 @@
       padding: 170px 30px 220px;
     }
 
-    p {
-      max-width: 400px;
-      margin: 0;
-    }
-
-    h1, h2 {
-      font-size: var(--text);
-      font-weight: 700;
-    }
-
-    h1 { margin: 0 0 12px; }
-
-    h2 {
-      margin: 50px 0 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--ink);
-    }
-
     a {
       color: var(--ink);
     }
@@ -81,7 +63,7 @@
       to { transform: rotate(360deg); }
     }
 
-    /* RETOUR - même style que le lien album photos>>> */
+    /* RETOUR */
     .back {
       display: block;
       margin: 0 0 30px;
@@ -91,7 +73,7 @@
       margin: 30px 0 0;
     }
 
-    /* GRILLE PHOTOS - dans la même largeur que les textes (400px) */
+    /* GRILLE PHOTOS */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -104,59 +86,6 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-    }
-
-    /* Flottant - identique à l'accueil */
-    .floating-stack {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 30;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 200px;
-    }
-
-    .floating-data {
-      padding: 12px;
-      background: var(--ink);
-      color: var(--bg);
-      font-size: var(--text-mini);
-      text-align: right;
-    }
-
-    .floating-data .title {
-      margin-bottom: 8px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--bg);
-    }
-
-    .fd-line {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    /* WhatsApp - identique à l'accueil */
-    .btn-wa-float {
-      display: block;
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 12px 0;
-      background: var(--ink);
-      color: var(--bg);
-      font-size: 12px;
-      text-decoration: none;
-    }
-
-    .wa-track {
-      display: flex;
-      width: max-content;
-      animation: waScroll 8s linear infinite;
-    }
-
-    @keyframes waScroll {
-      to { transform: translateX(-50%); }
     }
 
     /* Téléphone : 1 colonne */
@@ -179,66 +108,18 @@
 
     <a class="back" href="index.html"><<< RETOUR</a>
 
-    <h1>ALBUM PHOTOS</h1>
-    <p>Cuisson Bois / Soleil</p>
-
-    <section>
-      <h2>PHOTOS</h2>
-      <div class="grid">
-        <img src="Assets/pain-quotidien.jpg" alt="">
-        <img src="Assets/pain-special.jpg" alt="">
-        <img src="Assets/four-bois.jpg" alt="">
-        <img src="Assets/fournee.jpg" alt="">
-        <img src="Assets/faconnage.jpg" alt="">
-        <img src="Assets/levain.jpg" alt="">
-      </div>
-    </section>
+    <div class="grid">
+      <img src="Assets/pain-quotidien.jpg" alt="">
+      <img src="Assets/pain-special.jpg" alt="">
+      <img src="Assets/four-bois.jpg" alt="">
+      <img src="Assets/fournee.jpg" alt="">
+      <img src="Assets/faconnage.jpg" alt="">
+      <img src="Assets/levain.jpg" alt="">
+    </div>
 
     <a class="back back-bottom" href="index.html"><<< RETOUR</a>
 
   </main>
-
-  <div class="floating-stack">
-    <a class="btn-wa-float" href="https://wa.me/33600000000?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">
-      <div class="wa-track">
-        <span>PRÉ-COMMANDE WHATSAPP | PRÉ-COMMANDE WHATSAPP |&nbsp;</span>
-        <span>PRÉ-COMMANDE WHATSAPP | PRÉ-COMMANDE WHATSAPP |&nbsp;</span>
-      </div>
-    </a>
-
-    <div class="floating-data">
-      <div class="title">CUISSON SOLAIRE - DATA</div>
-      <div class="fd-line"><span>FOURNÉE DANS</span><span id="f-time">--:--:--</span></div>
-      <div class="fd-line"><span>PRÉVISIONS CIEL</span>☀️</div>
-      <div class="fd-line"><span>PROBA. CUISSON</span><span>70%</span></div>
-    </div>
-  </div>
-
-  <script>
-    const LAT = 47.651201;
-    const LON = -3.029765;
-
-    function tickClock() {
-      const el = document.getElementById('f-time');
-      if (el) el.textContent = new Date().toLocaleTimeString('fr-FR');
-    }
-    tickClock();
-    setInterval(tickClock, 1000);
-
-    async function updateCloud() {
-      const el = document.getElementById('f-cloud');
-      if (!el) return;
-      try {
-        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=cloud_cover&timezone=Europe%2FParis`);
-        const data = await res.json();
-        el.textContent = data.current.cloud_cover + '%';
-      } catch (e) {
-        el.textContent = '--%';
-      }
-    }
-    updateCloud();
-    setInterval(updateCloud, 600000);
-  </script>
 
 </body>
 </html>
