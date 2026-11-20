@@ -10,6 +10,16 @@
     body {
       margin: 0;
       background: #F2E8CF;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    /* ===== LIEN RETOUR ===== */
+    .back {
+      display: block;
+      padding: 20px 12px;
+      color: #000;
+      font-size: 14px;
+      text-transform: uppercase;
     }
 
     /* ===== GRILLE PHOTOS ===== */
@@ -17,7 +27,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      padding: 12px;
+      padding: 0 12px;
     }
 
     .grid img {
@@ -35,6 +45,9 @@
 </head>
 <body>
 
+  <!-- ===== RETOUR AVANT ===== -->
+  <a class="back" href="index.html"><<< RETOUR</a>
+
   <div class="grid">
     <img src="Assets/pain-quotidien.jpg" alt="">
     <img src="Assets/pain-special.jpg" alt="">
@@ -43,6 +56,9 @@
     <img src="Assets/faconnage.jpg" alt="">
     <img src="Assets/levain.jpg" alt="">
   </div>
+
+  <!-- ===== RETOUR APRÈS ===== -->
+  <a class="back" href="index.html"><<< RETOUR</a>
 
 </body>
 </html>
