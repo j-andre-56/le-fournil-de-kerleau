@@ -14,8 +14,7 @@
     a:hover { font-weight: 700; }
 
     .container { max-width: 550px; padding: 170px 30px 220px; }
-    p, .pains, .horaire { max-width: 400px; }
-    p { margin: 0; }
+    p { max-width: 400px; margin: 0; }
 
     h1, h2 { font-size: 13px; font-weight: 700; }
     h1 { margin: 0 0 12px; }
@@ -23,23 +22,21 @@
     address { font-style: normal; }
 
     /* Logo */
-    .header-fixed { position: fixed; inset: 0 0 auto 0; z-index: 20; }
-    .logo-wrapper { display: flex; justify-content: center; padding: 20px 30px; }
+    .header-fixed { position: fixed; inset: 0 0 auto 0; z-index: 20; display: flex; justify-content: center; padding: 20px 30px; }
     .logo-top { width: 120px; height: 120px; animation: sunRotate 4s linear infinite; }
     @keyframes sunRotate { to { transform: rotate(360deg); } }
 
     /* Contenu */
-    .pain { margin-bottom: 24px; }
-    .pain:last-child { margin-bottom: 0; }
-    .pain-title { font-weight: 400; }
-    .pain-desc { margin-top: 8px; }
-    .horaire { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--ink); }
+    .prod-desc { margin-top: 8px; }
+    .prod-item + .prod-item { margin-top: 24px; }
+    .horaire { padding: 8px 0; border-bottom: 1px dashed var(--ink); }
 
     .btn-wa { display: inline-block; margin-top: 14px; padding: 12px 16px; background: transparent; color: var(--ink); border: 1px solid var(--ink); font-size: 12px; font-weight: 700; }
     .btn-wa:hover { background: var(--ink); color: var(--bg); }
 
     /* Data flottante */
     .floating-data { position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 200px; padding: 12px; background: var(--ink); color: var(--bg); font-size: 11px; text-align: right; }
+    .floating-data p { max-width: none; }
     .floating-data .title { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--bg); }
     .fd-line { display: flex; justify-content: space-between; }
   </style>
@@ -47,9 +44,7 @@
 <body>
 
   <header class="header-fixed">
-    <div class="logo-wrapper">
-      <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Kerleau">
-    </div>
+    <img class="logo-top" src="assets/le-fournil-de-kerleau-logo.svg" alt="Kerleau">
   </header>
 
   <main class="container">
@@ -66,30 +61,24 @@
 
     <section>
       <h2>PRODUCTION</h2>
-      <div class="pains">
-        <div class="pain">
-          <div class="pain-title">01 / Quotidien</div>
-          <div class="pain-desc">
-            T80 sur meule de pierre, Levain, Sel de Guérande, 75% hydra.<br>
-            Cuisson bois<br>
-            2,50 € / Kg
-          </div>
-        </div>
-        <div class="pain">
-          <div class="pain-title">02 / Galette des rois</div>
-          <div class="pain-desc">
-            Frangipane, Beurre AOP "Montaigu", T65 "Label Rouge"<br>
-6p ou 8p<br>
-            Cuisson bois<br>
-            Prix à venir
-          </div>
-        </div>
-      </div>
+      <p class="prod-item">01 / Quotidien</p>
+      <p class="prod-desc">
+        T80 sur meule de pierre, Levain, Sel de Guérande, 75% hydra.<br>
+        Cuisson bois<br>
+        2,50 € / Kg
+      </p>
+
+      <p class="prod-item">02 / Galette des rois</p>
+      <p class="prod-desc">
+        Frangipane, feuilletage au beurre<br>
+        Cuisson bois<br>
+        Prix à venir
+      </p>
     </section>
 
     <section>
       <h2>HORAIRES ET RETRAIT</h2>
-      <div class="horaire"><span>Le Mardi</span><span>Au fournil 17h - 19h</span></div>
+      <p class="horaire">Le Mardi — Au fournil 17h - 19h</p>
     </section>
 
     <section>
@@ -110,10 +99,10 @@
   </main>
 
   <aside class="floating-data">
-    <div class="title">CUISSON SOLAIRE - DATA</div>
-    <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
-    <div class="fd-line"><span>COUVERTURE NUAGEUSE</span><span id="f-cloud">--%</span></div>
-    <div class="fd-line"><span>PROBA. CUISSON</span><span>70%</span></div>
+    <p class="title">CUISSON SOLAIRE - DATA</p>
+    <p class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></p>
+    <p class="fd-line"><span>COUVERTURE NUAGEUSE</span><span id="f-cloud">--%</span></p>
+    <p class="fd-line"><span>PROBA. CUISSON</span><span>70%</span></p>
   </aside>
 
   <script>
