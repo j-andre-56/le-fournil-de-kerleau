@@ -72,6 +72,19 @@
       to { transform: rotate(360deg); }
     }
 
+/* ---------- Photo carrée ---------- */
+.photo-carre {
+  margin: 0 0 20px;
+  max-width: 400px;
+}
+
+.photo-carre img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
     /* ---------- Production ---------- */
     .pains { max-width: 400px; }
     .pain-title { font-weight: 600; }
@@ -141,7 +154,11 @@
 
     <h1>KERLEAU / Pain et Pâtisserie Boulangère</h1>
 
-    <p>
+<figure class="photo-carre">
+  <img src="assets/kerleau-photo.jpg" alt="Kerleau - Fournil à Crac'h">
+</figure>
+
+<p>
       Kerleau est un petit labo de production, une sorte de néo-fournil. On y fabrique du pain et des pâtisseries boulangères, cuits au bois ou à l'énergie du soleil, à un prix accessible, pour les gens qui vivent autour.
       <br><br>
       Le prix des matières premières bouge de plus en plus et les récoltes sont de moins en moins régulières. On cherche à s'adapter au mieux. Pour ça, on préfère faire comme le pain, prendre notre temps pour pousser...
