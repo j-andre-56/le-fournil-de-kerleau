@@ -89,7 +89,7 @@ aside p:first-child { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1p
 <!-- 4 / NUAGE - 76 à 100% -->
 <svg id="icon-4" viewBox="0 0 24 24" fill="#F2E8CF"><path d="M7 18a4 4 0 0 1-.6-7.95A5 5 0 0 1 16.2 9.3 3.5 3.5 0 0 1 17 18Z"/></svg>
 </span></p>
-<p>PROBA. CUISSON 70%</p>
+<p id="f-proba">PROBA. CUISSON --%</p>
 </aside>
 
 <script>
@@ -97,10 +97,12 @@ const tick = () => document.getElementById('f-time').textContent = 'HEURE ' + ne
 tick(); setInterval(tick, 1000);
 function showIcon(cover) {
 ['icon-1','icon-2','icon-3','icon-4'].forEach(id => document.getElementById(id).classList.remove('active'));
-if (cover <= 25) document.getElementById('icon-1').classList.add('active');
-else if (cover <= 50) document.getElementById('icon-2').classList.add('active');
-else if (cover <= 75) document.getElementById('icon-3').classList.add('active');
-else document.getElementById('icon-4').classList.add('active');
+let proba = 0;
+if (cover <= 25) { document.getElementById('icon-1').classList.add('active'); proba = 90; }
+else if (cover <= 50) { document.getElementById('icon-2').classList.add('active'); proba = 60; }
+else if (cover <= 75) { document.getElementById('icon-3').classList.add('active'); proba = 20; }
+else { document.getElementById('icon-4').classList.add('active'); proba = 0; }
+document.getElementById('f-proba').textContent = 'PROBA. CUISSON ' + proba + '%';
 }
 async function cloud() {
 try {
