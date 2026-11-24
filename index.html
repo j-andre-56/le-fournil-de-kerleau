@@ -91,13 +91,17 @@
       display: inline-block;
       margin-top: 14px;
       padding: 12px 16px;
-      background: var(--ink);
-      color: var(--bg);
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--ink);
       font-size: 12px;
       font-weight: 700;
     }
 
-    .btn-wa:hover { opacity: .85; }
+    .btn-wa:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
 
     /* ---------- Data flottante ---------- */
     .floating-data {
