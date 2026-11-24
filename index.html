@@ -6,7 +6,6 @@
 
   <title>KERLEAU - Cuisson Bois Soleil</title>
   <meta name="description" content="Kerleau à Crac'h (56950) - Pain au levain, farine locale T80 sur meule de pierre, cuisson bois et four solaire. Retrait le vendredi au fournil.">
-  <link rel="canonical" href="https://lefournildekerleau.fr/">
 
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -15,9 +14,6 @@
       --bg: #F2E8CF;
       --ink: #000;
       --font: 'Source Code Pro', monospace;
-      --text: 13px;
-      --text-mini: 11px;
-      --gap: 30px;
     }
 
     * { box-sizing: border-box; }
@@ -27,10 +23,11 @@
       background: var(--bg);
       color: var(--ink);
       font-family: var(--font);
-      font-size: var(--text);
+      font-size: 13px;
       line-height: 1.6;
     }
 
+    /* ---------- Layout ---------- */
     .container {
       max-width: 550px;
       padding: 170px 30px 220px;
@@ -38,11 +35,7 @@
 
     p { max-width: 400px; margin: 0; }
 
-    h1, h2 {
-      font-size: var(--text);
-      font-weight: 700;
-    }
-
+    h1, h2 { font-size: 13px; font-weight: 700; }
     h1 { margin: 0 0 12px; }
 
     h2 {
@@ -53,17 +46,10 @@
 
     address { font-style: normal; }
 
-    a {
-      color: inherit;
-      font-weight: 400;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { font-weight: 700; }
 
-    a:hover {
-      font-weight: 700;
-    }
-
-    /* Logo fixe */
+    /* ---------- Logo ---------- */
     .header-fixed {
       position: fixed;
       inset: 0 0 auto 0;
@@ -86,18 +72,12 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Pains */
-    .pains {
-      display: flex;
-      flex-direction: column;
-      gap: var(--gap);
-      max-width: 400px;
-    }
-
+    /* ---------- Production ---------- */
+    .pains { max-width: 400px; }
     .pain-title { font-weight: 600; }
     .pain-desc { margin-top: 8px; }
 
-    /* Horaires */
+    /* ---------- Horaires ---------- */
     .horaire {
       display: flex;
       justify-content: space-between;
@@ -106,7 +86,7 @@
       border-bottom: 1px dashed var(--ink);
     }
 
-    /* Bouton WhatsApp dans Commande */
+    /* ---------- Commande ---------- */
     .btn-wa {
       display: inline-block;
       margin-top: 14px;
@@ -115,28 +95,21 @@
       color: var(--bg);
       font-size: 12px;
       font-weight: 700;
-      text-decoration: none;
     }
 
-    .btn-wa:hover {
-      font-weight: 700;
-      opacity: 0.85;
-    }
+    .btn-wa:hover { opacity: .85; }
 
-    /* Flottant - Data seule */
-    .floating-stack {
+    /* ---------- Data flottante ---------- */
+    .floating-data {
       position: fixed;
       right: 20px;
       bottom: 20px;
       z-index: 30;
       width: 200px;
-    }
-
-    .floating-data {
       padding: 12px;
       background: var(--ink);
       color: var(--bg);
-      font-size: var(--text-mini);
+      font-size: 11px;
       text-align: right;
     }
 
@@ -152,6 +125,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <header class="header-fixed">
@@ -163,23 +137,24 @@
   <main class="container">
 
     <h1>KERLEAU / Pain et Pâtisserie Boulangère</h1>
+
     <p>
-      Kerleau est un petit labo de production, une sorte de néo-fournil. On y fabrique du pain et des pâtisseries boulangères, cuits au bois ou à l'énergie du soleil, à un prix accessible, pour les gens qui vivent autour.<br><br>
+      Kerleau est un petit labo de production, une sorte de néo-fournil. On y fabrique du pain et des pâtisseries boulangères, cuits au bois ou à l'énergie du soleil, à un prix accessible, pour les gens qui vivent autour.
+      <br><br>
       Le prix des matières premières bouge de plus en plus et les récoltes sont de moins en moins régulières. On cherche à s'adapter au mieux. Pour ça, on préfère faire comme le pain, prendre notre temps pour pousser...
     </p>
+
     <br>
     <a href="photos.html">Album photos &gt;&gt;&gt;</a>
 
     <section>
       <h2>Production</h2>
       <div class="pains">
-        <div>
-          <div class="pain-title">01 / Quotidien</div>
-          <div class="pain-desc">
-            T80 sur meule de pierre, Levain, Sel de Guérande, 75% hydra.<br>
-            Cuisson bois<br>
-            2,50 € / Kg
-          </div>
+        <div class="pain-title">01 / Quotidien</div>
+        <div class="pain-desc">
+          T80 sur meule de pierre, Levain, Sel de Guérande, 75% hydra.<br>
+          Cuisson bois<br>
+          2,50 € / Kg
         </div>
       </div>
     </section>
@@ -196,8 +171,8 @@
       <h2>Commande</h2>
       <p>Pré-commande par WhatsApp uniquement.</p>
       <a class="btn-wa" href="https://wa.me/33651653075?text=Bonjour%20Julien%2C%20je%20veux%20pr%C3%A9-commander%20du%20pain%20pour%20vendredi%20!">
-  PRÉ-COMMANDE WHATSAPP >>>
-</a>
+        PRÉ-COMMANDE WHATSAPP &gt;&gt;&gt;
+      </a>
     </section>
 
     <section>
@@ -212,34 +187,33 @@
 
   </main>
 
-  <div class="floating-stack">
-    <div class="floating-data">
-      <div class="title">CUISSON SOLAIRE - DATA</div>
-      <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
-      <div class="fd-line"><span>COUVERTURE NUAGEUSE</span><span id="f-cloud">--%</span></div>
-      <div class="fd-line"><span>PROBA. CUISSON</span><span>70%</span></div>
-    </div>
-  </div>
+  <aside class="floating-data">
+    <div class="title">CUISSON SOLAIRE - DATA</div>
+    <div class="fd-line"><span>HEURE</span><span id="f-time">--:--:--</span></div>
+    <div class="fd-line"><span>COUVERTURE NUAGEUSE</span><span id="f-cloud">--%</span></div>
+    <div class="fd-line"><span>PROBA. CUISSON</span><span>70%</span></div>
+  </aside>
 
   <script>
     const LAT = 47.651201;
     const LON = -3.029765;
 
     function tickClock() {
-      const el = document.getElementById('f-time');
-      if (el) el.textContent = new Date().toLocaleTimeString('fr-FR');
+      document.getElementById('f-time').textContent =
+        new Date().toLocaleTimeString('fr-FR');
     }
     tickClock();
     setInterval(tickClock, 1000);
 
     async function updateCloud() {
       const el = document.getElementById('f-cloud');
-      if (!el) return;
       try {
-        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=cloud_cover&timezone=Europe%2FParis`);
+        const res = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=cloud_cover&timezone=Europe%2FParis`
+        );
         const data = await res.json();
         el.textContent = data.current.cloud_cover + '%';
-      } catch (e) {
+      } catch {
         el.textContent = '--%';
       }
     }
